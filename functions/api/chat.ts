@@ -8,7 +8,9 @@
 
 export interface Env {
   AI: any;
-  VECTORIZE_INDEX: any;
+  VECTORIZE_INDEX?: {
+    query: (text: string, options?: Record<string, unknown>) => Promise<any>;
+  };
 }
 
 export default {
@@ -39,23 +41,25 @@ export default {
       );
     }
 
-    // --- 1. Retrieve relevant chunks from Vectorize ---
-    // We expect you to have ingested your docs into env.VECTORIZE_INDEX already.
-    // For now, we do a simple similarity search on the question embedding.
+    // --- 1. Retrieve relevant chunks from Vectorize (if bound) ---
     let retrievedText = "";
-    try {
-      const queryResult = await env.VECTORIZE_INDEX.query(question, {
-        topK: 5,
-      });
-      // queryResult.matches: [{ score, metadata: { text, source, ... } }, ...]
-      const chunks = (queryResult.matches || [])
-        .map((m: any) => m.metadata?.text)
-        .filter(Boolean)
-        .slice(0, 5);
-      retrievedText = chunks.join("\n\n");
-    } catch (e) {
-      // If Vectorize isn’t ready yet, just fall back to no context.
-      console.error("Vectorize query failed:", e);
+    if (env.VECTORIZE_INDEX?.query) {
+      try {
+        const queryResult = await env.VECTORIZE_INDEX.query(question, {
+          topK: 5,
+        });
+        // queryResult.matches: [{ score, metadata: { text, source, ... } }, ...]
+        const chunks = (queryResult.matches || [])
+          .map((m: any) => m.metadata?.text)
+          .filter(Boolean)
+          .slice(0, 5);
+        retrievedText = chunks.join("\n\n");
+      } catch (e) {
+        // If Vectorize isn’t ready yet, just fall back to no context.
+        console.error("Vectorize query failed:", e);
+      }
+    } else {
+      console.info("Vectorize binding missing; continuing without retrieval context.");
     }
 
     // --- 2. Call Workers AI LLM with the question + context ---

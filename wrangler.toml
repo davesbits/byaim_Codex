@@ -9,9 +9,5 @@ workers_dev = true
 [ai]
 binding = "AI"
 
-[[vectorize]]
-binding = "VECTORIZE_INDEX"
-index_name = "byaim-knowledge"
-
 [site]
 bucket = "."
