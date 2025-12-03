@@ -1,9 +1,9 @@
-name = "byaim-rag-worker"
+name = "codex-cli"
 main = "functions/api/chat.ts"
 compatibility_date = "2024-10-15"
 
 # Fill these with your real values
-account_id = "YOUR_CLOUDFLARE_ACCOUNT_ID"
+account_id = "8019a1df9452fdfa24363110df9a55a9"
 workers_dev = true
 
 [ai]
