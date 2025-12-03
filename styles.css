@@ -1,0 +1,114 @@
+/* Shared CSS, includes chat + layout. Truncated here for brevity in concept.
+   You can replace with your existing styles.css from v3 if you prefer. */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  margin: 0;
+  background: #05050a;
+  color: #f7f7f7;
+}
+
+/* Simple layout shell */
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+header, footer {
+  padding: 1rem 1.5rem;
+}
+main {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+/* Chat widget (bottom-right) */
+.chat-root {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.chat-launcher {
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #b0c4ff, #6b8bff);
+  color: #05060a;
+  cursor: pointer;
+}
+.chat-panel {
+  width: min(360px, 90vw);
+  max-height: 60vh;
+  display: none;
+  flex-direction: column;
+  background: rgba(8, 8, 14, 0.96);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+.chat-panel--open { display: flex; }
+.chat-header {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+.chat-messages {
+  padding: 0.8rem 0.9rem;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.chat-message {
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+}
+.chat-message--user {
+  align-self: flex-end;
+  background: rgba(176, 196, 255, 0.12);
+}
+.chat-message--assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.04);
+}
+.chat-message-meta {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+.chat-input-row {
+  padding: 0.6rem 0.7rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-end;
+}
+.chat-input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(5, 5, 10, 0.9);
+  color: #f7f7f7;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.7rem;
+}
+.chat-send-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.12);
+  color: #f7f7f7;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.7rem;
+}

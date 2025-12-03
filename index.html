@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Charitable AI & IT Support</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header>
+      <strong>byAIm</strong> – charitable AI & IT pre‑consultation
+    </header>
+    <main>
+      <h1>byAIm full‑stack (Cloudflare) – v4</h1>
+      <p>
+        This is the Cloudflare full‑stack version. Static assets are served via
+        Cloudflare Pages. The “Need help?” chat in the bottom‑right talks to a
+        Cloudflare Worker at <code>/api/chat</code>, which runs Retrieval‑Augmented
+        Generation (RAG) using Cloudflare AI Search / Vectorize and Workers AI.
+      </p>
+      <p>
+        You can now build out the rest of the UI (members, business, support,
+        contact, admin tools) on top of this skeleton.
+      </p>
+    </main>
+    <footer>
+      byAIm – planned public launch 2026.
+    </footer>
+  </div>
+
+  <!-- Chat widget -->
+  <div id="chat-root" class="chat-root" aria-live="polite">
+    <button
+      id="chat-launcher"
+      class="chat-launcher"
+      type="button"
+      aria-label="Open help chat"
+    >
+      <span>💬</span>
+      <span>Need help?</span>
+    </button>
+
+    <section
+      id="chat-panel"
+      class="chat-panel"
+      aria-label="byAIm help chat"
+      aria-hidden="true"
+    >
+      <header class="chat-header">
+        <div>
+          <div>byAIm help</div>
+          <div style="font-size:0.75rem;opacity:0.7;">
+            Ask about this page, MS, or the service.
+          </div>
+        </div>
+        <button
+          type="button"
+          id="chat-close"
+          style="border:none;background:transparent;color:#ccc;cursor:pointer;"
+          aria-label="Close chat"
+        >
+          ✕
+        </button>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message chat-message--assistant">
+          <div class="chat-message-meta">Assistant</div>
+          <div>
+            Hi, I’m a small AI helper for this site. Ask a short question about
+            byAIm, bookings, or MS‑friendly tech support.
+          </div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-input-row">
+        <input
+          id="chat-input"
+          class="chat-input"
+          type="text"
+          name="message"
+          autocomplete="off"
+          placeholder="Type a question and press Enter…"
+        />
+        <button id="chat-send" class="chat-send-btn" type="submit">
+          Send
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="/chat.js"></script>
+</body>
+</html>
