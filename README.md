@@ -43,18 +43,29 @@ to use AutoRAG, OpenAI Agents, or another RAG pipeline.
 
 3. Bind AI and Vectorize in your Cloudflare dashboard or via `wrangler`:
 
-   - Create a Vectorize index named `byaim-knowledge` (or whatever you set in `wrangler.toml`).
+   - Create a Vectorize index via CLI:
+
+     ```bash
+     npx wrangler vectorize create byaim-knowledge --dimensions=768 --metric=cosine
+     ```
+
+     This creates an index compatible with Workers AI's `@cf/baai/bge-base-en-v1.5` embedding model (768 dimensions, cosine similarity).
+
    - Enable Workers AI and ensure the `AI` binding is configured.
-   - In `wrangler.toml` we already declare:
+   - In `wrangler.toml` we declare:
 
      ```toml
      [ai]
      binding = "AI"
 
-     [vectorize]
+     [[vectorize]]
      binding = "VECTORIZE_INDEX"
      index_name = "byaim-knowledge"
      ```
+
+   - After deployment, your Worker has access to:
+     - `env.VECTORIZE_INDEX` → Vectorize Index (byaim-knowledge)
+     - `env.AI` → Workers AI
 
 4. Run locally:
 
