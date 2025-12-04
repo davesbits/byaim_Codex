@@ -13,5 +13,6 @@ binding = "AI"
 binding = "VECTORIZE_INDEX"
 index_name = "byaim-knowledge"
 
-[site]
-bucket = "."
+[assets]
+directory = "./"
+binding = "ASSETS"

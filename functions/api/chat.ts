@@ -5,9 +5,11 @@
 // Bindings (set in wrangler.toml):
 // - env.AI               : Workers AI binding
 // - env.VECTORIZE_INDEX  : Vectorize index binding
+// - env.ASSETS           : Static assets binding
 
 export interface Env {
   AI: any;
+  ASSETS: { fetch: (request: Request) => Promise<Response> };
   VECTORIZE_INDEX?: {
     query: (text: string, options?: Record<string, unknown>) => Promise<any>;
   };
@@ -17,12 +19,20 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    if (url.pathname !== "/api/chat") {
-      return new Response("Not found", { status: 404 });
+    // Handle API routes
+    if (url.pathname === "/api/chat") {
+      return handleChat(request, env);
     }
-    if (request.method !== "POST") {
-      return new Response("Method not allowed", { status: 405 });
-    }
+
+    // Serve static assets for all other routes
+    return env.ASSETS.fetch(request);
+  },
+};
+
+async function handleChat(request: Request, env: Env): Promise<Response> {
+  if (request.method !== "POST") {
+    return new Response("Method not allowed", { status: 405 });
+  }
 
     let body: any;
     try {
