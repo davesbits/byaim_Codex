@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Contact & Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- CONTACT PAGE BACKGROUND -->
+  <div class="bg-slideshow contact-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+    <div class="bg-overlay"></div>
+  </div>
+  <div class="bg-veil"></div>
+
+  <div class="site-shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AI</span>m</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
+          <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
+          <a href="support.html" class="nav-link" data-requires-auth="true">Support</a>
+          <a href="contact.html" class="nav-link nav-link--active">Contact</a>
+          <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
+          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-shell">
+        <section class="section-block">
+          <div class="section-kicker">Contact & booking</div>
+          <h1 class="section-heading">Start with a question or a simple booking request.</h1>
+          <p class="section-text">
+            Use this form to ask a question, suggest a project, or request a charitable
+            session. In future, this page will connect to <strong>AI helpers</strong> to
+            collect more detail and <strong>Twilio-powered SMS updates</strong>, but for now
+            it's a simple, low-pressure contact form.
+          </p>
+        </section>
+
+        <section class="section-block">
+          <div class="contact-grid">
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name" class="form-label">Your name</label>
+                <input id="name" name="name" type="text" class="form-input" autocomplete="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email address</label>
+                <input id="email" name="email" type="email" class="form-input" autocomplete="email" required />
+                <div class="form-helper">
+                  I'll reply here first. SMS and other options may be added later.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="topic" class="form-label">What do you need?</label>
+                <select id="topic" name="topic" class="form-select">
+                  <option value="question">I have a general question</option>
+                  <option value="booking">I'd like to book a charitable session</option>
+                  <option value="organisation">I'm asking on behalf of a charity / organisation</option>
+                  <option value="cost-tools">I'd like to help test the cost tools</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Tell me a little bit about your situation</label>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Anything you'd like to share – diagnoses, energy levels, tech setup, or just what's frustrating you most." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="preferred" class="form-label">Preferred reply type</label>
+                <select id="preferred" name="preferred" class="form-select">
+                  <option value="email">Email only</option>
+                  <option value="phone">Phone / voice call (details later)</option>
+                  <option value="either">Either is fine</option>
+                </select>
+                <div class="form-helper">
+                  In future, this can include SMS and other options.
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary">Send message</button>
+              <div class="form-helper">
+                This button doesn't send anything yet – you'll wire it up to your
+                Supabase / AI workflow when you're ready.
+              </div>
+            </form>
+
+            <div>
+              <div class="section-subheading">What happens next</div>
+              <p class="section-text">
+                Right now, I'm keeping things intentionally small. As byAIm grows towards
+                its <strong>planned public launch in 2026</strong>, this page will become
+                the hub for:
+              </p>
+
+              <ul class="checklist">
+                <li>AI-assisted question triage (so you don't have to write long emails).</li>
+                <li>Automated suggestions for sessions and follow-ups.</li>
+                <li>SMS reminders and updates for people who prefer texts.</li>
+                <li>A clearer pathway for charities and organisations.</li>
+              </ul>
+
+              <p class="section-meta">
+                For now, treat this as a "note to future us". Once your backend is ready,
+                you'll connect this form to Supabase functions, Twilio, and your AI agents.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>byAIm – contact & booking.</div>
+        <div class="launch-tag">Planned public launch in 2026.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chat widget -->
+  <div id="chat-root" class="chat-root" aria-live="polite">
+    <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
+      <span>💬</span>
+      <span>Need help?</span>
+    </button>
+
+    <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
+      <header class="chat-header">
+        <div>
+          <div>byAIm help</div>
+          <div style="font-size:0.75rem;opacity:0.7;">Ask about this page, MS, or the service.</div>
+        </div>
+        <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message chat-message--assistant">
+          <div class="chat-message-meta">Assistant</div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-input-row">
+        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="chat.js"></script>
+</body>
+</html>

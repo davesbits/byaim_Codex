@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Support & Bookings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SUPPORT PAGE BACKGROUND -->
+  <div class="bg-slideshow support-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+    <div class="bg-overlay"></div>
+  </div>
+  <div class="bg-veil"></div>
+
+  <div class="site-shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AI</span>m</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
+          <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
+          <a href="support.html" class="nav-link nav-link--active" data-requires-auth="true">Support</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
+          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-shell">
+        <section class="section-block">
+          <div class="section-kicker">Support & bookings</div>
+          <h1 class="section-heading">A charitable, low-pressure way to talk about your tech.</h1>
+          <p class="section-text">
+            A "session" with byAIm is more like a conversation than a formal assessment.
+            We talk about <strong>what your days actually look like</strong>, which bits of technology
+            are tripping you up, and where AI might quietly help in the background.
+          </p>
+
+          <div class="button-row button-row--tight">
+            <a href="contact.html" class="btn btn--primary">Request a call</a>
+            <a href="contact.html" class="btn">Send a question</a>
+          </div>
+          <p class="section-meta">
+            You never have to turn your camera on. Breaks are expected. "I'm too tired today"
+            is a perfectly acceptable reason to reschedule.
+          </p>
+        </section>
+
+        <section class="section-block">
+          <div class="section-subheading">How the charitable bit works</div>
+          <p class="section-text">
+            Instead of a fixed fee, we agree a <strong>suggested donation</strong> to an
+            MS or neurological charity. If you already donate to a specific organisation,
+            we can keep supporting them. If not, I can suggest a few options.
+          </p>
+
+          <ul class="checklist">
+            <li>You choose the charity (or charities) that matter most to you.</li>
+            <li>Where possible, donations are made directly – not via byAIm.</li>
+            <li>If money is tight, we can still talk. The "charitable" part includes your energy.</li>
+            <li>For organisations, we can pair project fees with public or private donations.</li>
+          </ul>
+        </section>
+
+        <section class="section-block">
+          <div class="section-subheading">What we can cover together</div>
+          <p class="section-text">
+            Sessions can be very focused or very open. Common themes:
+          </p>
+
+          <ul class="checklist">
+            <li>Setting up AI tools to help with emails, forms and paperwork.</li>
+            <li>Organising files, photos and scans so you can actually find things.</li>
+            <li>Exploring voice control, shortcuts and one-handed-friendly setups.</li>
+            <li>Looking at your current devices and seeing what they can already do.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>byAIm – support & bookings.</div>
+        <div class="launch-tag">Planned public launch in 2026.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chat widget -->
+  <div id="chat-root" class="chat-root" aria-live="polite">
+    <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
+      <span>💬</span>
+      <span>Need help?</span>
+    </button>
+
+    <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
+      <header class="chat-header">
+        <div>
+          <div>byAIm help</div>
+          <div style="font-size:0.75rem;opacity:0.7;">Ask about this page, MS, or the service.</div>
+        </div>
+        <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message chat-message--assistant">
+          <div class="chat-message-meta">Assistant</div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-input-row">
+        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="chat.js"></script>
+</body>
+</html>

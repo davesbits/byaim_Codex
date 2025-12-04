@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Log in</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- LOGIN PAGE BACKGROUND: reuse home style -->
+  <div class="bg-slideshow home-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+    <div class="bg-overlay"></div>
+  </div>
+  <div class="bg-veil"></div>
+
+  <div class="site-shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AI</span>m</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
+          <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
+          <a href="support.html" class="nav-link" data-requires-auth="true">Support</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="login.html" class="nav-link nav-link--primary nav-link--active" data-role="login-link">Log in</a>
+          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-shell">
+        <section class="section-block">
+          <div class="section-kicker">Sign in</div>
+          <h1 class="section-heading">Log in to byAIm</h1>
+          <p class="section-text">
+            Use the method that's easiest for you. Authentication is handled by
+            <strong>Supabase</strong>, with options for Google, GitHub, email and phone.
+          </p>
+
+          <div class="button-row">
+            <button class="btn btn--primary" data-auth-provider="google">Continue with Google</button>
+            <button class="btn" data-auth-provider="github">Continue with GitHub</button>
+          </div>
+
+          <div class="button-row">
+            <button class="btn" id="btn-email-login">Login via email / magic link</button>
+            <button class="btn" id="btn-phone-login">Login via phone (SMS)</button>
+          </div>
+
+          <p class="section-meta">
+            Once you're logged in, you'll be able to access the members, business
+            and support pages. You can always log out again from the navigation bar.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>byAIm – secure login via Supabase Auth.</div>
+        <div class="launch-tag">Planned public launch in 2026.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chat widget -->
+  <div id="chat-root" class="chat-root" aria-live="polite">
+    <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
+      <span>💬</span>
+      <span>Need help?</span>
+    </button>
+
+    <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
+      <header class="chat-header">
+        <div>
+          <div>byAIm help</div>
+          <div style="font-size:0.75rem;opacity:0.7;">Ask about this page, MS, or the service.</div>
+        </div>
+        <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message chat-message--assistant">
+          <div class="chat-message-meta">Assistant</div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-input-row">
+        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="chat.js"></script>
+</body>
+</html>

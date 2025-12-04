@@ -4,90 +4,148 @@
   <meta charset="UTF-8" />
   <title>byAIm – Charitable AI & IT Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- FULLSCREEN BACKGROUND WRAP (HOME) -->
+  <div class="bg-slideshow home-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+    <div class="bg-overlay"></div>
+  </div>
+  <div class="bg-veil"></div>
+
+  <!-- PAGE CONTENT WRAPPED ON TOP -->
   <div class="site-shell">
     <header>
-      <strong>byAIm</strong> – charitable AI & IT pre‑consultation
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AI</span>m</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="nav-link nav-link--active">Home</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
+          <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
+          <a href="support.html" class="nav-link" data-requires-auth="true">Support</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
+          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+        </nav>
+      </div>
     </header>
+
     <main>
-      <h1>byAIm full‑stack (Cloudflare) – v4</h1>
-      <p>
-        This is the Cloudflare full‑stack version. Static assets are served via
-        Cloudflare Pages. The “Need help?” chat in the bottom‑right talks to a
-        Cloudflare Worker at <code>/api/chat</code>, which runs Retrieval‑Augmented
-        Generation (RAG) using Cloudflare AI Search / Vectorize and Workers AI.
-      </p>
-      <p>
-        You can now build out the rest of the UI (members, business, support,
-        contact, admin tools) on top of this skeleton.
-      </p>
+      <section class="hero-shell" aria-label="byAIm landing hero">
+        <!-- LEFT: MAIN MESSAGE -->
+        <div class="hero-card">
+          <div class="hero-kicker">Charitable AI & IT consultation</div>
+          <h1 class="hero-title">
+            Turning <span class="hero-title-strong">30 years of tech</span><br />
+            into support for life with MS.
+          </h1>
+          <p class="hero-subtitle">
+            I live with multiple sclerosis and use AI to keep creating, building and
+            supporting others. Here, your <strong>donation to MS and neuro charities</strong>
+            is the "currency" for tailored help with
+            <strong>AI, automation and everyday tech problems</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="support.html" class="hero-button hero-button--primary" data-requires-auth="true">
+              Book a charitable chat
+            </a>
+            <a href="members.html" class="hero-button" data-requires-auth="true">
+              Join as a member
+            </a>
+            <a href="business.html" class="hero-button" data-requires-auth="true">
+              For organisations
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            Accessible remote support for people with
+            <span>MS, neurological conditions & carers.</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: PANELS THAT "FLOW" WITH THE BG -->
+        <aside class="hero-side" aria-label="Quick info panels">
+          <div class="panel">
+            <div class="panel-title">How it works</div>
+            <div class="panel-heading">Pre-consultation, powered by AI</div>
+            <p class="panel-text">
+              We chat about your tech, your energy levels, and what you'd like to
+              make easier. I use AI tools plus real-world experience to map
+              out small, realistic changes.
+            </p>
+            <div class="pill-row">
+              <span class="pill">AI workflows</span>
+              <span class="pill">Apps & devices</span>
+              <span class="pill">Accessibility tweaks</span>
+              <span class="pill">Home & cloud</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">For you</div>
+            <div class="panel-heading">People, carers & charities</div>
+            <p class="panel-text">
+              Whether you're living with MS, caring for someone, or running a
+              small charity, we'll keep the tech conversation human, gentle and
+              practical.
+            </p>
+            <div class="pill-row">
+              <span class="pill">People with MS</span>
+              <span class="pill">Neurological conditions</span>
+              <span class="pill">Carers & families</span>
+              <span class="pill">Support organisations</span>
+            </div>
+          </div>
+        </aside>
+      </section>
     </main>
+
     <footer>
-      byAIm – planned public launch 2026.
+      <div class="footer-inner">
+        <div>byAIm – charitable pre-consultation for AI & IT.</div>
+        <div class="launch-tag">Planned public launch in 2026.</div>
+      </div>
     </footer>
   </div>
 
   <!-- Chat widget -->
   <div id="chat-root" class="chat-root" aria-live="polite">
-    <button
-      id="chat-launcher"
-      class="chat-launcher"
-      type="button"
-      aria-label="Open help chat"
-    >
+    <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
       <span>💬</span>
       <span>Need help?</span>
     </button>
 
-    <section
-      id="chat-panel"
-      class="chat-panel"
-      aria-label="byAIm help chat"
-      aria-hidden="true"
-    >
+    <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
       <header class="chat-header">
         <div>
           <div>byAIm help</div>
-          <div style="font-size:0.75rem;opacity:0.7;">
-            Ask about this page, MS, or the service.
-          </div>
+          <div class="chat-header-subtitle">Ask about this page, MS, or the service.</div>
         </div>
-        <button
-          type="button"
-          id="chat-close"
-          style="border:none;background:transparent;color:#ccc;cursor:pointer;"
-          aria-label="Close chat"
-        >
-          ✕
-        </button>
+        <button type="button" id="chat-close" class="chat-close-btn" aria-label="Close chat">✕</button>
       </header>
       <div id="chat-messages" class="chat-messages">
         <div class="chat-message chat-message--assistant">
           <div class="chat-message-meta">Assistant</div>
-          <div>
-            Hi, I’m a small AI helper for this site. Ask a short question about
-            byAIm, bookings, or MS‑friendly tech support.
-          </div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
         </div>
       </div>
       <form id="chat-form" class="chat-input-row">
-        <input
-          id="chat-input"
-          class="chat-input"
-          type="text"
-          name="message"
-          autocomplete="off"
-          placeholder="Type a question and press Enter…"
-        />
-        <button id="chat-send" class="chat-send-btn" type="submit">
-          Send
-        </button>
+        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
       </form>
     </section>
   </div>
 
-  <script type="module" src="/chat.js"></script>
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="chat.js"></script>
 </body>
 </html>
