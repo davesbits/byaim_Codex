@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../byAIm_supabase_site_v3"
+		}
+	],
+	"settings": {
+		"accessibility.voice.keywordActivation": "chatInView"
+	}
+}
