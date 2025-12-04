@@ -1,9 +1,8 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SUPABASE_URL = "https://YOUR-PROJECT-ID.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_PUBLIC_KEY";
+const SUPABASE_URL = "https://losdkdhitteqwomunblt.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxvc2RrZGhpdHRlcXdvbXVuYmx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMDc5MzUsImV4cCI6MjA3OTU4MzkzNX0.pDDcP6K8F_X2uZ7Sjh_amNDY9VOUVOEz0oWNYWpXezc";
 
-// Replace these with your real Supabase URL + anon key from the NonPro project.
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function getUser() {
