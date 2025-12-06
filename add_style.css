@@ -16,6 +16,20 @@
   background: linear-gradient(135deg, #1e5033 0%, #3a7d52 50%, #1b4630 100%);
 }
 
+/* ========================================
+   Form Status Styles
+   ======================================== */
+
+.form-success {
+  color: #7dd3a3 !important;
+  font-weight: 500;
+}
+
+.form-error {
+  color: #f87171 !important;
+  font-weight: 500;
+}
+
 /* Table wrapper for horizontal scroll on narrow screens */
 .table-wrapper {
   overflow-x: auto;

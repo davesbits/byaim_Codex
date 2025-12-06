@@ -93,11 +93,8 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn--primary">Send message</button>
-              <div class="form-helper">
-                This button doesn't send anything yet – you'll wire it up to your
-                Supabase / AI workflow when you're ready.
-              </div>
+              <button type="submit" class="btn btn--primary" id="submit-btn">Send message</button>
+              <div id="form-status" class="form-helper"></div>
             </form>
 
             <div>
@@ -163,5 +160,53 @@
 
   <script type="module" src="auth.js"></script>
   <script type="module" src="chat.js"></script>
+  <script type="module">
+    import { supabase } from './auth.js';
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formStatus = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formStatus.textContent = '';
+      formStatus.className = 'form-helper';
+
+      // Gather form data
+      const formData = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        topic: form.topic.value,
+        message: form.message.value.trim(),
+        preferred_reply: form.preferred.value,
+        created_at: new Date().toISOString()
+      };
+
+      try {
+        const { data, error } = await supabase
+          .from('contacts')
+          .insert([formData]);
+
+        if (error) throw error;
+
+        // Success
+        formStatus.textContent = '✓ Message sent! I'll be in touch soon.';
+        formStatus.className = 'form-helper form-success';
+        form.reset();
+
+      } catch (err) {
+        console.error('Contact form error:', err);
+        formStatus.textContent = '✗ Something went wrong. Please try again or email directly.';
+        formStatus.className = 'form-helper form-error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+      }
+    });
+  </script>
 </body>
 </html>
