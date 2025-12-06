@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>byAIm – Members</title>
+  <title>byAIm – About</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- MEMBERS PAGE BACKGROUND -->
-  <div class="bg-slideshow members-bg">
+  <!-- ABOUT PAGE BACKGROUND -->
+  <div class="bg-slideshow home-bg">
     <div class="bg-slide bg-1"></div>
     <div class="bg-slide bg-2"></div>
     <div class="bg-slide bg-3"></div>
@@ -27,10 +27,10 @@
 
         <nav>
           <a href="index.html" class="nav-link">Home</a>
-          <a href="members.html" class="nav-link nav-link--active" data-requires-auth="true">Individuals</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Individuals</a>
           <a href="charities.html" class="nav-link" data-requires-auth="true">Charities</a>
           <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
-          <a href="about.html" class="nav-link">About</a>
+          <a href="about.html" class="nav-link nav-link--active">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
           <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
           <a href="#" class="nav-link nav-link--primary nav-link--logout is-hidden" data-role="logout-link">Log out</a>
@@ -41,53 +41,45 @@
     <main>
       <div class="page-shell">
         <section class="section-block">
-          <div class="section-kicker">Members area</div>
-          <h1 class="section-heading">A quieter space for people living with MS and other neurological conditions.</h1>
+          <div class="section-kicker">About byAIm</div>
+          <h1 class="section-heading">Human-centred AI & IT support led by lived experience.</h1>
           <p class="section-text">
-            The members area is designed for people who need technology to be
-            <strong>gentle, predictable and energy-aware</strong>. Think of it as a calm
-            dashboard where you can come back to saved plans, resources and simple
-            next steps that match your current energy levels.
+            I'm Dave, living with multiple sclerosis and building byAIm as a charitable-first
+            way to use AI, automation, and thoughtful IT to reduce friction for people and
+            organisations who need tech to be kinder. Your donations to MS and neuro charities
+            are the currency for the help I provide.
           </p>
-
-          <div class="button-row">
-            <a href="#" class="btn btn--primary">Open members dashboard</a>
-            <a href="support.html" class="btn" data-requires-auth="true">Book a first conversation</a>
-          </div>
-
-          <ul class="checklist">
-            <li>Personalised notes and follow-ups from our charitable calls.</li>
-            <li>Simple, MS-friendly checklists instead of long documents.</li>
-            <li>Links to recommended tools already filtered for accessibility.</li>
-            <li>Space for carers and family to see the same plan (if you want).</li>
-          </ul>
-
-          <p class="section-meta">
-            This area will connect to your existing login via Supabase
-            authentication. Access can be limited to people you explicitly invite.
+          <p class="section-text">
+            I focus on practical, lightweight changes: voice-friendly setups, gentle automations,
+            clearer workflows, and realistic cloud choices that respect limited energy and time.
+            Whether you're an individual, a small charity, or a team, the goal is the same:
+            tech that quietly supports you instead of draining you.
           </p>
         </section>
 
         <section class="section-block">
-          <div class="section-subheading">What you'll see when you log in</div>
-          <p class="section-text">
-            The members view is intentionally minimal. No noise, no dashboards full of graphs.
-            Just a small number of tiles:
-          </p>
-
+          <div class="section-subheading">What I bring</div>
           <ul class="checklist">
-            <li><strong>Today / This week</strong> – one or two realistic tech tasks.</li>
-            <li><strong>Energy-aware mode</strong> – options for "good day", "OK day", "bad day".</li>
-            <li><strong>Your tools</strong> – links to apps, accounts and shortcuts we've set up.</li>
-            <li><strong>Charity log</strong> – which causes you've chosen to support so far.</li>
+            <li>30+ years across product, engineering, and IT with a bias for accessibility.</li>
+            <li>Hands-on experience living with MS, so accommodations are built-in, not bolted on.</li>
+            <li>Cloud, AI, and automation that stay maintainable for small teams and individuals.</li>
+            <li>Clear follow-ups and documentation so you can move at your own pace.</li>
           </ul>
+        </section>
+
+        <section class="section-block">
+          <div class="section-subheading">How to work together</div>
+          <div class="button-row">
+            <a href="support.html" class="btn btn--primary" data-requires-auth="true">Book a charitable session</a>
+            <a href="contact.html" class="btn">Send a question</a>
+          </div>
         </section>
       </div>
     </main>
 
     <footer>
       <div class="footer-inner">
-        <div>byAIm – members space.</div>
+        <div>byAIm – human-centred AI & IT support.</div>
         <div class="launch-tag">Planned public launch in 2026.</div>
       </div>
     </footer>
@@ -104,14 +96,14 @@
       <header class="chat-header">
         <div>
           <div>byAIm help</div>
-          <div style="font-size:0.75rem;opacity:0.7;">Ask about this page, MS, or the service.</div>
+          <div style="font-size:0.75rem;opacity:0.7;">Ask about this site, MS-friendly tech, or bookings.</div>
         </div>
         <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
       </header>
       <div id="chat-messages" class="chat-messages">
         <div class="chat-message chat-message--assistant">
           <div class="chat-message-meta">Assistant</div>
-          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS-friendly tech.</div>
         </div>
       </div>
       <form id="chat-form" class="chat-input-row">

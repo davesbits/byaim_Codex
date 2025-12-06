@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const isAuthed = !!user;
 
   // nav toggle
-  if (loginLink)  loginLink.style.display  = isAuthed ? "none" : "inline-flex";
-  if (logoutLink) logoutLink.style.display = isAuthed ? "inline-flex" : "none";
+  if (loginLink)  loginLink.classList.toggle("is-hidden", isAuthed);
+  if (logoutLink) logoutLink.classList.toggle("is-hidden", !isAuthed);
 
   // lightly disable protected links for logged-out state
   authOnlyLinks.forEach((el) => {
