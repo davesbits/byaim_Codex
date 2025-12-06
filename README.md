@@ -40,7 +40,7 @@ Charitable AI & IT pre-consultation for people with MS and neurological conditio
 | `login.html` | No | Supabase Auth login (Google, GitHub, Email, Phone) |
 | `contact.html` | No | Contact form |
 | `members.html` | Yes | Members dashboard |
-| `business.html` | Yes | For organisations |
+| `charities.html` | Yes | Free tech for charities & non-profits |
 | `support.html` | Yes | Support & bookings |
 
 ---
@@ -167,7 +167,7 @@ byAIm_cloudflare_fullstack_v4/
 ├── index.html          # Landing page
 ├── login.html          # Auth page
 ├── members.html        # Protected: Members dashboard
-├── business.html       # Protected: For organisations
+├── charities.html      # Protected: Charities & non-profits
 ├── support.html        # Protected: Support & bookings
 ├── contact.html        # Contact form
 ├── styles.css          # Full UI styles

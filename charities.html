@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Charities & Non-Profits</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="add_style.css" />
+</head>
+<body>
+  <!-- CHARITIES PAGE BACKGROUND -->
+  <div class="bg-slideshow charities-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+    <div class="bg-overlay"></div>
+  </div>
+  <div class="bg-veil"></div>
+
+  <div class="site-shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AI</span>m</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
+          <a href="charities.html" class="nav-link nav-link--active" data-requires-auth="true">Charities</a>
+          <a href="support.html" class="nav-link" data-requires-auth="true">Support</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
+          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-shell">
+        <section class="section-block">
+          <div class="section-kicker">For charities &amp; non-profits</div>
+          <h1 class="section-heading">Free &amp; Discounted Tech for UK Charities</h1>
+          <p class="section-text">
+            A curated list of free and discounted technology programmes for UK charities,
+            non-profits and social impact projects. You can point your own charity or
+            partner organisations to these providers to reduce their running costs.
+          </p>
+          <p class="section-text">
+            Each row shows a provider, what they offer, who typically qualifies,
+            and how to apply. Always check the provider's current terms and eligibility
+            before relying on an offer — programmes and limits can change.
+          </p>
+        </section>
+
+        <section class="section-block charities-table-section">
+          <div class="table-wrapper" role="region" aria-labelledby="charities-table-caption">
+            <table class="charity-table">
+              <caption id="charities-table-caption">
+                Free and discounted tech programmes for charities and non-profits
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Provider</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">What you get</th>
+                  <th scope="col">Who qualifies</th>
+                  <th scope="col">How to apply</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aggregators -->
+                <tr>
+                  <td><strong>Charity Digital / TechSoup UK</strong></td>
+                  <td>Marketplace / Aggregator</td>
+                  <td>
+                    Access to donated and discounted software, cloud credits and tools
+                    (Microsoft, Adobe, Zoom, Notion and many more).
+                  </td>
+                  <td>
+                    UK-based charities, some CICs and non-profits, depending on vendor.
+                  </td>
+                  <td>
+                    Register and verify your organisation at
+                    <a href="https://charitydigital.org.uk" target="_blank" rel="noopener">
+                      charitydigital.org.uk
+                    </a>
+                    (TechSoup UK).
+                  </td>
+                </tr>
+
+                <!-- Cloud & compute -->
+                <tr>
+                  <td><strong>Google for Nonprofits</strong></td>
+                  <td>Cloud / Email / Ads</td>
+                  <td>
+                    Free or discounted Google Workspace, YouTube Nonprofit features,
+                    and Google Ad Grants (up to around $10,000/month in search ads).
+                  </td>
+                  <td>
+                    Registered charities that meet Google's eligibility and policy rules.
+                  </td>
+                  <td>
+                    Apply at
+                    <a href="https://www.google.com/nonprofits/" target="_blank" rel="noopener">
+                      google.com/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Microsoft for Nonprofits</strong></td>
+                  <td>Cloud / Email / Productivity</td>
+                  <td>
+                    Azure credits (commonly around $2,000/year) plus donated or discounted
+                    Microsoft 365 (Exchange, Teams, Office apps) for staff and volunteers.
+                  </td>
+                  <td>
+                    Eligible non-profits and charities after Microsoft's non-profit verification.
+                  </td>
+                  <td>
+                    Start at
+                    <a href="https://nonprofit.microsoft.com" target="_blank" rel="noopener">
+                      nonprofit.microsoft.com
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>AWS Nonprofit Programs</strong></td>
+                  <td>Cloud compute / Storage</td>
+                  <td>
+                    AWS credits for infrastructure, plus potential additional funding
+                    and support via the AWS Imagine Grant.
+                  </td>
+                  <td>
+                    Registered non-profits; scope and amounts depend on specific programme.
+                  </td>
+                  <td>
+                    See
+                    <a href="https://aws.amazon.com/nonprofits/" target="_blank" rel="noopener">
+                      aws.amazon.com/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>DigitalOcean "DO for Nonprofits"</strong></td>
+                  <td>VPS / Cloud</td>
+                  <td>
+                    One-time infrastructure credit (commonly around $2,500 for 1 year)
+                    and discounts on managed hosting (Cloudways).
+                  </td>
+                  <td>
+                    Non-profits and social enterprises with a social impact mission.
+                  </td>
+                  <td>
+                    Details and application at
+                    <a href="https://www.digitalocean.com/solutions/nonprofits" target="_blank" rel="noopener">
+                      digitalocean.com/solutions/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Cloudflare for Startups / Impact</strong></td>
+                  <td>Edge / Security / AI</td>
+                  <td>
+                    Credits towards Cloudflare Workers, Pages, R2, security tools and AI
+                    services. Some programmes offer significant credits for non-profits
+                    and civil society orgs.
+                  </td>
+                  <td>
+                    Non-profits, public interest and impact-driven organisations.
+                  </td>
+                  <td>
+                    Explore programmes at
+                    <a href="https://www.cloudflare.com/impact/" target="_blank" rel="noopener">
+                      cloudflare.com/impact
+                    </a>
+                    and related initiatives (Project Galileo, etc.).
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Cloudflare Project Galileo</strong></td>
+                  <td>Security</td>
+                  <td>
+                    Free enterprise-grade security (DDoS protection, WAF, CDN) for
+                    at-risk public interest websites (e.g. human rights, journalism,
+                    civil society).
+                  </td>
+                  <td>
+                    NGOs, non-profits, journalists and similar groups facing online risk.
+                  </td>
+                  <td>
+                    Learn more and apply via
+                    <a href="https://www.cloudflare.com/galileo/" target="_blank" rel="noopener">
+                      cloudflare.com/galileo
+                    </a>.
+                  </td>
+                </tr>
+
+                <!-- UK hosting / domains -->
+                <tr>
+                  <td><strong>Kualo – Free Charity Hosting</strong></td>
+                  <td>Web hosting</td>
+                  <td>
+                    Free or heavily discounted eco-powered shared hosting for UK charities,
+                    including website builder and support.
+                  </td>
+                  <td>
+                    Registered UK charities (proof required).
+                  </td>
+                  <td>
+                    See
+                    <a href="https://www.kualo.co.uk/free-charity-hosting" target="_blank" rel="noopener">
+                      kualo.co.uk/free-charity-hosting
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>34SP.com – Free Charity Hosting</strong></td>
+                  <td>Web hosting</td>
+                  <td>
+                    Free shared web hosting for UK registered charities, UK-based servers
+                    and support.
+                  </td>
+                  <td>
+                    UK registered charities with a charity number.
+                  </td>
+                  <td>
+                    Details at
+                    <a href="https://www.34sp.com/charity-hosting" target="_blank" rel="noopener">
+                      34sp.com/charity-hosting
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>LCN – Free Charity Hosting &amp; Domain</strong></td>
+                  <td>Web hosting / Domain</td>
+                  <td>
+                    Free lifetime web hosting plus a free 2-year domain name for
+                    qualifying UK charities.
+                  </td>
+                  <td>
+                    UK registered charities; charity number required.
+                  </td>
+                  <td>
+                    See
+                    <a href="https://www.lcn.com/charity-web-hosting" target="_blank" rel="noopener">
+                      lcn.com/charity-web-hosting
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>UKNode – Free Hosting &amp; .co.uk Domain</strong></td>
+                  <td>Web hosting / Domain</td>
+                  <td>
+                    Free web hosting and a free .co.uk domain for registered charities
+                    and non-profits.
+                  </td>
+                  <td>
+                    UK charities, CICs and non-profit organisations (proof required).
+                  </td>
+                  <td>
+                    Info at
+                    <a href="https://uknode.co.uk/charity-hosting" target="_blank" rel="noopener">
+                      uknode.co.uk/charity-hosting
+                    </a>.
+                  </td>
+                </tr>
+
+                <!-- Productivity & collaboration -->
+                <tr>
+                  <td><strong>Slack for Nonprofits</strong></td>
+                  <td>Team communication</td>
+                  <td>
+                    Free or heavily discounted paid Slack plans (full features up to a
+                    certain workspace size, then large discounts).
+                  </td>
+                  <td>
+                    Eligible non-profit organisations worldwide.
+                  </td>
+                  <td>
+                    Apply at
+                    <a href="https://slack.com/help/articles/204368833-Slack-for-Nonprofits" target="_blank" rel="noopener">
+                      slack.com — Nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Notion for Nonprofits</strong></td>
+                  <td>Knowledge / Project management</td>
+                  <td>
+                    Donated or discounted Notion workspace for qualifying non-profits,
+                    useful for CRM, projects and documentation.
+                  </td>
+                  <td>
+                    Registered non-profits and charitable organisations.
+                  </td>
+                  <td>
+                    See
+                    <a href="https://www.notion.so/nonprofits" target="_blank" rel="noopener">
+                      notion.so/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Zoom for Nonprofits</strong></td>
+                  <td>Video meetings</td>
+                  <td>
+                    Discounted Zoom licences for non-profits (e.g. lower pricing on
+                    Pro/Business plans).
+                  </td>
+                  <td>
+                    Eligible non-profits; verification via partners such as Goodstack.
+                  </td>
+                  <td>
+                    Start at
+                    <a href="https://zoom.us/nonprofits" target="_blank" rel="noopener">
+                      zoom.us/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <!-- Design & marketing -->
+                <tr>
+                  <td><strong>Canva for Nonprofits</strong></td>
+                  <td>Design / Marketing</td>
+                  <td>
+                    Full Canva Pro features free for non-profits (often up to a set
+                    number of team members). Ideal for social posts, posters, reports.
+                  </td>
+                  <td>
+                    Registered non-profits that meet Canva's eligibility rules.
+                  </td>
+                  <td>
+                    Apply at
+                    <a href="https://www.canva.com/canva-for-nonprofits/" target="_blank" rel="noopener">
+                      canva.com/canva-for-nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>Adobe via Charity Digital / TechSoup</strong></td>
+                  <td>Creative tools</td>
+                  <td>
+                    Donated or significantly discounted Adobe Creative Cloud and other
+                    Adobe products through Charity Digital Exchange.
+                  </td>
+                  <td>
+                    Eligible UK charities as defined by Adobe and Charity Digital.
+                  </td>
+                  <td>
+                    Browse offers at
+                    <a href="https://charitydigital.org.uk" target="_blank" rel="noopener">
+                      charitydigital.org.uk
+                    </a>.
+                  </td>
+                </tr>
+
+                <!-- Payments & fundraising -->
+                <tr>
+                  <td><strong>Stripe nonprofit pricing</strong></td>
+                  <td>Payments / Donations</td>
+                  <td>
+                    Reduced card processing rates for charities and non-profits
+                    (exact fees depend on region and agreement).
+                  </td>
+                  <td>
+                    Registered non-profits; Stripe may request documentation.
+                  </td>
+                  <td>
+                    See
+                    <a href="https://stripe.com/gb/nonprofits" target="_blank" rel="noopener">
+                      stripe.com/gb/nonprofits
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>PayPal Giving Fund UK</strong></td>
+                  <td>Donations</td>
+                  <td>
+                    Fee-free donations via PayPal Giving Fund and partner platforms,
+                    with funds granted to your charity.
+                  </td>
+                  <td>
+                    Registered UK charities that enrol with PayPal Giving Fund.
+                  </td>
+                  <td>
+                    Learn more at
+                    <a href="https://www.paypal.com/uk/webapps/mpp/givingfund" target="_blank" rel="noopener">
+                      paypal.com — Giving Fund UK
+                    </a>.
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong>JustGiving for Charities</strong></td>
+                  <td>Fundraising platform</td>
+                  <td>
+                    Online fundraising pages, events and campaigns with no platform fee
+                    for UK charities (standard payment processing fees still apply).
+                  </td>
+                  <td>
+                    Registered charities and non-profit organisations.
+                  </td>
+                  <td>
+                    Register at
+                    <a href="https://www.justgiving.com/for-charities" target="_blank" rel="noopener">
+                      justgiving.com/for-charities
+                    </a>.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="section-meta">
+            Note: This page is for information only. Always confirm current pricing and
+            eligibility with the provider before applying, as programmes and terms can
+            change without notice.
+          </p>
+        </section>
+
+        <section class="section-block">
+          <div class="section-subheading">Need help choosing the right tools?</div>
+          <p class="section-text">
+            byAIm offers <strong>pre-consultation sessions</strong> for charities and non-profits
+            who want to make the most of these offers — without getting overwhelmed by options
+            or spending time on tools that don't fit your needs.
+          </p>
+
+          <div class="button-row">
+            <a href="support.html" class="btn btn--primary" data-requires-auth="true">Book a session</a>
+            <a href="contact.html" class="btn">Get in touch</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>byAIm – AI &amp; IT pre-consultation for charities and non-profits.</div>
+        <div class="launch-tag">Planned public launch in 2026.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Chat widget -->
+  <div id="chat-root" class="chat-root" aria-live="polite">
+    <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
+      <span>💬</span>
+      <span>Need help?</span>
+    </button>
+
+    <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
+      <header class="chat-header">
+        <div>
+          <div>byAIm help</div>
+          <div style="font-size:0.75rem;opacity:0.7;">Ask about charity tech, non-profit tools, or the service.</div>
+        </div>
+        <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-message chat-message--assistant">
+          <div class="chat-message-meta">Assistant</div>
+          <div>Hi, I'm a small AI helper for this site. Ask a short question about free tech for charities, non-profit tools, or byAIm services.</div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-input-row">
+        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="chat.js"></script>
+</body>
+</html>

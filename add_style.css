@@ -1,0 +1,110 @@
+/* ========================================
+   Charities Page Styles
+   ======================================== */
+
+/* Charities page background */
+.charities-bg .bg-1 {
+  background: linear-gradient(135deg, #1a472a 0%, #2d5a3e 50%, #1e3a2f 100%);
+}
+.charities-bg .bg-2 {
+  background: linear-gradient(135deg, #234e35 0%, #3d7a55 50%, #1a4a31 100%);
+}
+.charities-bg .bg-3 {
+  background: linear-gradient(135deg, #2a5f3f 0%, #458a5f 50%, #1f5234 100%);
+}
+.charities-bg .bg-4 {
+  background: linear-gradient(135deg, #1e5033 0%, #3a7d52 50%, #1b4630 100%);
+}
+
+/* Table wrapper for horizontal scroll on narrow screens */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Charity resources table */
+.charity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 700px;
+}
+
+.charity-table caption {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  padding: 0.75rem;
+  text-align: left;
+  color: #ccc;
+}
+
+.charity-table thead {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.charity-table th,
+.charity-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  vertical-align: top;
+}
+
+.charity-table th {
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.charity-table td {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.charity-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.charity-table td strong {
+  color: #7dd3a3;
+  font-weight: 600;
+}
+
+.charity-table a {
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.charity-table a:hover {
+  text-decoration: underline;
+}
+
+/* Section styling for charities table */
+.charities-table-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .charity-table {
+    font-size: 0.8rem;
+  }
+  
+  .charity-table th,
+  .charity-table td {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Additional spacing for table section */
+.charities-table-section .section-meta {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
