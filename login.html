@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-        <nav>
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="members.html" class="nav-link" data-requires-auth="true">Individuals</a>
-          <a href="charities.html" class="nav-link" data-requires-auth="true">Charities</a>
-          <a href="business.html" class="nav-link" data-requires-auth="true">Business</a>
-          <a href="about.html" class="nav-link">About</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-          <a href="login.html" class="nav-link nav-link--active nav-link--primary" data-role="login-link">Log in</a>
-          <a href="#" class="nav-link nav-link--primary nav-link--logout is-hidden" data-role="logout-link">Log out</a>
-        </nav>
+<head>
+  <meta charset="UTF-8" />
+  <title>byAIm – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- LOGIN PAGE BACKGROUND -->
+  <div class="bg-slideshow members-bg">
     <div class="bg-slide bg-1"></div>
     <div class="bg-slide bg-2"></div>
     <div class="bg-slide bg-3"></div>
@@ -28,12 +27,12 @@
 
         <nav>
           <a href="index.html" class="nav-link">Home</a>
-          <a href="members.html" class="nav-link" data-requires-auth="true">Members</a>
-          <a href="charities.html" class="nav-link" data-requires-auth="true">Charities</a>
-          <a href="support.html" class="nav-link" data-requires-auth="true">Support</a>
+          <a href="charities.html" class="nav-link">Charities</a>
+          <a href="business.html" class="nav-link">Business</a>
+          <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
           <a href="login.html" class="nav-link nav-link--primary nav-link--active" data-role="login-link">Log in</a>
-          <a href="#" class="nav-link nav-link--primary" data-role="logout-link" style="display:none;">Log out</a>
+          <a href="#" class="nav-link nav-link--primary nav-link--logout is-hidden" data-role="logout-link">Log out</a>
         </nav>
       </div>
     </header>
@@ -53,22 +52,32 @@
             <button class="btn" data-auth-provider="github">Continue with GitHub</button>
           </div>
 
-          <div class="button-row">
-            <button class="btn" id="btn-email-login">Login via email / magic link</button>
-            <button class="btn" id="btn-phone-login">Login via phone (SMS)</button>
+          <div class="form-helper">
+            Email and phone login are available below.
           </div>
+        </section>
 
-          <p class="section-meta">
-            Once you're logged in, you'll be able to access the members, business
-            and support pages. You can always log out again from the navigation bar.
-          </p>
+        <section class="section-block">
+          <div class="section-subheading">Email magic link</div>
+          <form id="email-login-form" class="stacked-form">
+            <input id="email-input" class="form-input" type="email" name="email" placeholder="name@example.com" autocomplete="email" required />
+            <button class="btn btn--primary" type="submit">Send magic link</button>
+          </form>
+        </section>
+
+        <section class="section-block">
+          <div class="section-subheading">Phone (SMS one-time code)</div>
+          <form id="phone-login-form" class="stacked-form">
+            <input id="phone-input" class="form-input" type="tel" name="phone" placeholder="+44 7700 900000" autocomplete="tel" required />
+            <button class="btn btn--primary" type="submit">Send code</button>
+          </form>
         </section>
       </div>
     </main>
 
     <footer>
       <div class="footer-inner">
-        <div>byAIm – secure login via Supabase Auth.</div>
+        <div>byAIm – sign in.</div>
         <div class="launch-tag">Planned public launch in 2026.</div>
       </div>
     </footer>
@@ -85,9 +94,9 @@
       <header class="chat-header">
         <div>
           <div>byAIm help</div>
-          <div style="font-size:0.75rem;opacity:0.7;">Ask about this page, MS, or the service.</div>
+          <div class="chat-subtext">Ask about this page, MS, or the service.</div>
         </div>
-        <button type="button" id="chat-close" style="border:none;background:transparent;color:#ccc;cursor:pointer;" aria-label="Close chat">✕</button>
+        <button type="button" id="chat-close" class="chat-close" aria-label="Close chat">✕</button>
       </header>
       <div id="chat-messages" class="chat-messages">
         <div class="chat-message chat-message--assistant">
@@ -106,3 +115,25 @@
   <script type="module" src="chat.js"></script>
 </body>
 </html>
+                  <div>byAIm help</div>
+                  <div class="chat-subtext">Ask about this page, MS, or the service.</div>
+                </div>
+                <button type="button" id="chat-close" class="chat-close" aria-label="Close chat">✕</button>
+              </header>
+              <div id="chat-messages" class="chat-messages">
+                <div class="chat-message chat-message--assistant">
+                  <div class="chat-message-meta">Assistant</div>
+                  <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings, or MS‑friendly tech support.</div>
+                </div>
+              </div>
+              <form id="chat-form" class="chat-input-row">
+                <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off" placeholder="Type a question and press Enter…" />
+                <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+              </form>
+            </section>
+          </div>
+
+          <script type="module" src="auth.js"></script>
+          <script type="module" src="chat.js"></script>
+        </body>
+        </html>

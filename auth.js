@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // hard-protect pages by filename
   const path = window.location.pathname.split("/").pop();
-  const protectedPages = ["members.html", "charities.html", "support.html"];
+  const protectedPages = [];
   if (!isAuthed && protectedPages.includes(path)) {
     window.location.href = "login.html";
   }
