@@ -19,6 +19,9 @@ Charitable AI & IT pre-consultation for people with MS and neurological conditio
 │  ┌─────────────────────────────────────────────────────┐   │
 │  │              functions/api/chat.ts                   │   │
 │  │         (Pages Function → Workers AI + Vectorize)    │   │
+│  ├─────────────────────────────────────────────────────┤   │
+│  │             functions/api/twilio.ts                  │   │
+│  │        (Pages Function → Twilio inbound SMS)         │   │
 │  └─────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
                               │
@@ -112,6 +115,42 @@ Add these in Cloudflare Dashboard → Workers & Pages → codex-cli → Settings
 
 ---
 
+## Twilio Inbound Webhook
+
+The endpoint `POST /api/twilio` replies to SMS with TwiML `<Message>` and to calls with `<Say>` and optional `<Connect><Stream>` to ElevenLabs or your digital reception. Configure it in Twilio and set bindings in Pages.
+
+1) Add secret bindings in Cloudflare Pages → Functions → Environment Variables:
+
+| Name | Purpose |
+|------|---------|
+| `TWILIO_WELCOME_MESSAGE` | Reply text for inbound SMS |
+| `TWILIO_VOICE_MESSAGE` | Spoken intro for inbound voice calls |
+| `TWILIO_AUTH_TOKEN` | Enables webhook signature validation |
+| `ELEVENLABS_STREAM_URL` | Twilio Media Streams URL for an ElevenLabs voice agent (optional) |
+| `DIGITAL_RECEPTION_WEBHOOK` | Optional downstream webhook to fan-out payloads |
+
+2) In Twilio Console → Phone Numbers → Manage → Active Numbers → Messaging → A Message Comes In: set the webhook to `https://codex-cli.pages.dev/api/twilio` with HTTP POST.
+
+3) For voice, set the same webhook under Voice → A Call Comes In (POST).
+
+4) Quick local smoke test (with `wrangler pages dev .` running):
+
+```bash
+curl -X POST http://127.0.0.1:8787/api/twilio \
+   -H "Content-Type: application/x-www-form-urlencoded" \
+   -d "From=%2B15550000001&To=%2B15550000002&Body=Hi"
+```
+
+Voice stream test (replace with real CallSid/CallStatus if needed):
+
+```bash
+curl -X POST http://127.0.0.1:8787/api/twilio \
+   -H "Content-Type: application/x-www-form-urlencoded" \
+   -d "CallSid=CA123&CallStatus=ringing&From=%2B15550000001&To=%2B15550000002"
+```
+
+---
+
 ## TODO: Ingest Knowledge Base
 
 The chat widget uses RAG. To populate the vector index:
@@ -175,7 +214,8 @@ byAIm_cloudflare_fullstack_v4/
 ├── chat.js             # Chat widget (calls /api/chat)
 ├── functions/
 │   └── api/
-│       └── chat.ts     # Pages Function (AI + RAG)
+│       ├── chat.ts     # Pages Function (AI + RAG)
+│       └── twilio.ts   # Pages Function (Twilio inbound SMS)
 ├── knowledge/          # Text files for RAG
 ├── scripts/
 │   └── ingest_example.mjs  # Vector ingestion
