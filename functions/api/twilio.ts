@@ -124,7 +124,7 @@ export async function onRequestPost(context: {
 
   const welcome =
     env.TWILIO_WELCOME_MESSAGE ||
-    "Thanks for reaching out. A digital reception agent will follow up shortly.";
+    "Thanks for reaching out. A digital reception agent will follow up shortly. Please feel free to ask any questions. The Agent will get back to you with your request and follow up details";
 
   await forwardToReception(env, { from, to, messageBody }, waitUntil);
 
