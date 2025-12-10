@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8" />
+      <title>
+            <%= title || 'byAIm – Charitable AI & IT Support' %>
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+      <!-- FULLSCREEN BACKGROUND WRAP (HOME) -->
+      <div class="bg-slideshow home-bg">
+            <div class="bg-slide bg-1"></div>
+            <div class="bg-slide bg-2"></div>
+            <div class="bg-slide bg-3"></div>
+            <div class="bg-slide bg-4"></div>
+            <div class="bg-overlay"></div>
+      </div>
+      <div class="bg-veil"></div>
+
+      <!-- PAGE CONTENT WRAPPED ON TOP -->
+      <div class="site-shell">
+            <header>
+                  <div class="header-inner">
+                        <div class="brand">
+                              <div class="brand-mark"></div>
+                              <div class="brand-text">by<span>AI</span>m</div>
+                        </div>
+
+                        <nav>
+                              <a href="index.html"
+                                    class="nav-link <%= currentPath === 'index.html' ? 'nav-link--active' : '' %>">Home</a>
+                              <a href="charities.html"
+                                    class="nav-link <%= currentPath === 'charities.html' ? 'nav-link--active' : '' %>">Charities</a>
+                              <a href="business.html"
+                                    class="nav-link <%= currentPath === 'business.html' ? 'nav-link--active' : '' %>">Business</a>
+                              <a href="about.html"
+                                    class="nav-link <%= currentPath === 'about.html' ? 'nav-link--active' : '' %>">About</a>
+                              <a href="contact.html"
+                                    class="nav-link <%= currentPath === 'contact.html' ? 'nav-link--active' : '' %>">Contact</a>
+                              <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
+                              <a href="#" class="nav-link nav-link--primary nav-link--logout is-hidden"
+                                    data-role="logout-link">Log out</a>
+                        </nav>
+                  </div>
+            </header>
+
+            <main>
+                  <% if (locals.hero) { %>
+                        <section class="hero-shell" aria-label="byAIm landing hero">
+                              <!-- LEFT: MAIN MESSAGE -->
+                              <div class="hero-card">
+                                    <div class="hero-kicker">
+                                          <%= hero.kicker %>
+                                    </div>
+                                    <h1 class="hero-title">
+                                          <%- hero.title %>
+                                    </h1>
+                                    <p class="hero-subtitle">
+                                          <%- hero.subtitle %>
+                                    </p>
+
+                                    <div class="hero-actions">
+                                          <% if (hero.actions) { hero.actions.forEach(function(action) { %>
+                                                <a href="<%= action.url %>"
+                                                      class="hero-button <%= action.primary ? 'hero-button--primary' : '' %>">
+                                                      <%= action.text %>
+                                                </a>
+                                                <% }); } %>
+                                    </div>
+
+                                    <div class="hero-meta">
+                                          <%- hero.meta %>
+                                    </div>
+                              </div>
+
+                              <!-- RIGHT: PANELS THAT "FLOW" WITH THE BG -->
+                              <aside class="hero-side" aria-label="Quick info panels">
+                                    <% if (locals.panels) { panels.forEach(function(panel) { %>
+                                          <div class="panel">
+                                                <div class="panel-title">
+                                                      <%= panel.title %>
+                                                </div>
+                                                <div class="panel-heading">
+                                                      <%= panel.heading %>
+                                                </div>
+                                                <p class="panel-text">
+                                                      <%- panel.text %>
+                                                </p>
+                                                <div class="pill-row">
+                                                      <% if (panel.pills) { panel.pills.forEach(function(pill) { %>
+                                                            <span class="pill">
+                                                                  <%= pill %>
+                                                            </span>
+                                                            <% }); } %>
+                                                </div>
+                                          </div>
+                                          <% }); } %>
+                              </aside>
+                        </section>
+                        <% } else { %>
+                              <!-- Default content render if no hero structure -->
+                              <div class="container content-wrapper">
+                                    <%- content %>
+                              </div>
+                              <% } %>
+            </main>
+
+            <footer>
+                  <div class="footer-inner">
+                        <div>byAIm – charitable pre-consultation for AI & IT.</div>
+                        <div class="launch-tag">Planned public launch in 2026.</div>
+                  </div>
+            </footer>
+      </div>
+
+      <!-- Chat widget -->
+      <div id="chat-root" class="chat-root" aria-live="polite">
+            <button id="chat-launcher" class="chat-launcher" type="button" aria-label="Open help chat">
+                  <span>💬</span>
+                  <span>Need help?</span>
+            </button>
+
+            <section id="chat-panel" class="chat-panel" aria-label="byAIm help chat" aria-hidden="true">
+                  <header class="chat-header">
+                        <div>
+                              <div>byAIm help</div>
+                              <div class="chat-header-subtitle">Ask about this page, MS, or the service.</div>
+                        </div>
+                        <button type="button" id="chat-close" class="chat-close-btn" aria-label="Close chat">✕</button>
+                  </header>
+                  <div id="chat-messages" class="chat-messages">
+                        <div class="chat-message chat-message--assistant">
+                              <div class="chat-message-meta">Assistant</div>
+                              <div>Hi, I'm a small AI helper for this site. Ask a short question about byAIm, bookings,
+                                    or MS‑friendly tech support.</div>
+                        </div>
+                  </div>
+                  <form id="chat-form" class="chat-input-row">
+                        <input id="chat-input" class="chat-input" type="text" name="message" autocomplete="off"
+                              placeholder="Type a question and press Enter…" />
+                        <button id="chat-send" class="chat-send-btn" type="submit">Send</button>
+                  </form>
+            </section>
+      </div>
+
+      <script type="module" src="auth.js"></script>
+      <script type="module" src="chat.js"></script>
+</body>
+
+</html>

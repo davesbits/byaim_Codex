@@ -6,6 +6,21 @@ Charitable AI & IT pre-consultation for people with MS and neurological conditio
 
 ---
 
+## Content Management
+
+You can edit the content of the site using Markdown files with Frontmatter.
+
+1.  **Edit Content**:
+    *   Navigate to the `content/` folder.
+    *   Edit `index.md` (Home), `newstyle.md`, or create new `.md` files.
+    *   Use the Front Matter extension to easily edit metadata (title, hero sections, etc).
+
+2.  **Build Site**:
+    *   Run `npm run build` to regenerate the HTML files from the Markdown content.
+    *   This happens automatically when you run `npm run deploy`.
+
+---
+
 ## Architecture
 
 ```
@@ -203,7 +218,9 @@ git push
 
 ```
 byAIm_cloudflare_fullstack_v4/
-├── index.html          # Landing page
+├── _layouts/           # HTML templates (EJS)
+├── content/            # Markdown content files
+├── index.html          # Landing page (generated)
 ├── login.html          # Auth page
 ├── members.html        # Protected: Members dashboard
 ├── charities.html      # Protected: Charities & non-profits

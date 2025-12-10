@@ -1,0 +1,168 @@
+{
+    "frontMatter.taxonomy.fieldGroups": [
+        {
+            "id": "actions_group",
+            "fields": [
+                {
+                    "title": "text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "title": "url",
+                    "name": "url",
+                    "type": "string"
+                },
+                {
+                    "title": "primary",
+                    "name": "primary",
+                    "type": "boolean"
+                }
+            ]
+        },
+        {
+            "id": "panels_group",
+            "fields": [
+                {
+                    "title": "title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "heading",
+                    "name": "heading",
+                    "type": "string"
+                },
+                {
+                    "title": "text",
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "title": "pills",
+                    "name": "pills",
+                    "type": "choice",
+                    "choices": [
+                        "AI workflows",
+                        "Apps & devices",
+                        "Accessibility tweaks",
+                        "Home & cloud"
+                    ]
+                }
+            ]
+        }
+    ],
+    "frontMatter.taxonomy.contentTypes": [
+        {
+            "name": "default",
+            "pageBundle": false,
+            "fields": [
+                {
+                    "title": "Title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "Description",
+                    "name": "description",
+                    "type": "string"
+                },
+                {
+                    "title": "Publishing date",
+                    "name": "date",
+                    "type": "datetime",
+                    "default": "{{now}}",
+                    "isPublishDate": true
+                },
+                {
+                    "title": "Content preview",
+                    "name": "preview",
+                    "type": "image"
+                },
+                {
+                    "title": "Is in draft",
+                    "name": "draft",
+                    "type": "boolean"
+                },
+                {
+                    "title": "Tags",
+                    "name": "tags",
+                    "type": "tags"
+                },
+                {
+                    "title": "Categories",
+                    "name": "categories",
+                    "type": "categories"
+                }
+            ]
+        },
+        {
+            "name": "html",
+            "pageBundle": true,
+            "fields": [
+                {
+                    "title": "title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "hero",
+                    "name": "hero",
+                    "type": "fields",
+                    "fields": [
+                        {
+                            "title": "kicker",
+                            "name": "kicker",
+                            "type": "string"
+                        },
+                        {
+                            "title": "title",
+                            "name": "title",
+                            "type": "string"
+                        },
+                        {
+                            "title": "subtitle",
+                            "name": "subtitle",
+                            "type": "string"
+                        },
+                        {
+                            "title": "actions",
+                            "name": "actions",
+                            "type": "block",
+                            "fieldGroup": [
+                                "actions_group"
+                            ]
+                        },
+                        {
+                            "title": "meta",
+                            "name": "meta",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "title": "panels",
+                    "name": "panels",
+                    "type": "block",
+                    "fieldGroup": [
+                        "panels_group"
+                    ]
+                },
+                {
+                    "title": "fmContentType",
+                    "name": "fmContentType",
+                    "type": "string"
+                }
+            ]
+        }
+    ],
+    "[markdown]": {
+        "editor.fontSize": 14,
+        "editor.lineHeight": 26,
+        "editor.wordWrap": "wordWrapColumn",
+        "editor.wordWrapColumn": 64,
+        "editor.lineNumbers": "off",
+        "editor.quickSuggestions": false,
+        "editor.minimap.enabled": false
+    }
+}

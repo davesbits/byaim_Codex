@@ -1,0 +1,17 @@
+{
+      "name": "byaim-cloudflare-fullstack-v4",
+      "version": "1.0.0",
+      "description": "Full stack Cloudflare Pages project with AI and Crawler",
+      "scripts": {
+            "dev": "wrangler dev",
+            "deploy": "npm run build && wrangler deploy",
+            "ingest": "node scripts/ingest_example.mjs",
+            "build": "node scripts/build_site.mjs"
+      },
+      "dependencies": {
+            "ejs": "^3.1.10",
+            "gray-matter": "^4.0.3",
+            "marked": "^17.0.1",
+            "wrangler": "^3.0.0"
+      }
+}

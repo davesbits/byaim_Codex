@@ -5,7 +5,7 @@
 - `functions/api/chat.ts` is the Cloudflare Worker entry point for `/api/chat`. Treat it as the only server boundary: add helpers inside `functions/` if you introduce additional routes or background jobs.
 - `knowledge/` holds `.txt` sources for retrieval. Store raw text only—use the ingest script to push embeddings.
 - `scripts/ingest_example.mjs` is the ingestion skeleton. Extend it (chunking, embedding, retries) rather than creating duplicate scripts.
-- `wrangler.toml` centralizes bindings: Worker name `codex-cli`, `AI` binding only, and the Cloudflare account ID already aligned with the Production project. Add new environments via `[env.<name>]` blocks instead of new files.
+- `wrangler.toml` centralizes bindings: Worker name `byaim-fullstack-v4`, `AI` binding only, and the Cloudflare account ID already aligned with the Production project. Add new environments via `[env.<name>]` blocks instead of new files.
 
 ## Build, Test, and Development Commands
 - `wrangler dev` — runs the Worker + static assets locally with live reload; pass `--local` to avoid remote calls while prototyping.
@@ -31,7 +31,7 @@
 
 ## Deployment & CI
 - Cloudflare Pages/Workers CI is already linked to GitHub (`main` branch) and deploys with `npx wrangler deploy`. Build logs appear in the Cloudflare dashboard; rerun failed builds from there.
-- The Worker name must stay `codex-cli` to match Cloudflare’s connected build; changing it will trigger PRs from Cloudflare.
+- The Worker name must stay `byaim-fullstack-v4` to match Cloudflare’s connected build; changing it will trigger PRs from Cloudflare.
 - Vectorize is currently disabled in `wrangler.toml`; once a Vectorize index exists, reintroduce the binding and remove the fallback log message in `functions/api/chat.ts`.
 
 ## Security & Configuration Tips
