@@ -15,7 +15,7 @@ async function getUser() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const loginLink  = document.querySelector("[data-role='login-link']");
+  const loginLink = document.querySelector("[data-role='login-link']");
   const logoutLink = document.querySelector("[data-role='logout-link']");
   const authOnlyLinks = document.querySelectorAll("[data-requires-auth='true']");
 
@@ -23,23 +23,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   const isAuthed = !!user;
 
   // nav toggle
-  if (loginLink)  loginLink.classList.toggle("is-hidden", isAuthed);
+  if (loginLink) loginLink.classList.toggle("is-hidden", isAuthed);
   if (logoutLink) logoutLink.classList.toggle("is-hidden", !isAuthed);
 
-  // lightly disable protected links for logged-out state
+  // Disable protected links when logged out; restore them when authed
   authOnlyLinks.forEach((el) => {
     if (!isAuthed) {
-      el.classList.add("nav-link--disabled");
-      el.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.location.href = "login.html";
-      });
+      if (!el.dataset.authGuardAttached) {
+        el.classList.add("nav-link--disabled");
+        el.dataset.authGuardAttached = "true";
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.location.href = "login.html";
+        });
+      }
+    } else {
+      // Re-enable if a prior guard was applied
+      if (el.classList.contains("nav-link--disabled")) {
+        const restored = el.cloneNode(true);
+        restored.classList.remove("nav-link--disabled");
+        restored.dataset.authGuardAttached = "";
+        el.replaceWith(restored);
+      }
     }
   });
 
   // hard-protect pages by filename
   const path = window.location.pathname.split("/").pop();
-  const protectedPages = [];
+  const protectedPages = ["crawler.html"]; // Protected crawler page
   if (!isAuthed && protectedPages.includes(path)) {
     window.location.href = "login.html";
   }
@@ -47,8 +58,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // === LOGIN PAGE CONTROLS ===
   const googleBtn = document.querySelector("[data-auth-provider='google']");
   const githubBtn = document.querySelector("[data-auth-provider='github']");
-  const emailBtn  = document.querySelector("#btn-email-login");
-  const phoneBtn  = document.querySelector("#btn-phone-login");
+  const emailBtn = document.querySelector("#btn-email-login");
+  const phoneBtn = document.querySelector("#btn-phone-login");
 
   if (googleBtn) {
     googleBtn.addEventListener("click", async () => {

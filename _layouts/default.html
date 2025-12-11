@@ -8,11 +8,15 @@
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="styles.css" />
+
+      <% if (locals.custom_css) { %>
+      <link rel="stylesheet" href="<%= custom_css %>" />
+      <% } %>
 </head>
 
 <body>
       <!-- FULLSCREEN BACKGROUND WRAP (HOME) -->
-      <div class="bg-slideshow home-bg">
+      <div class="bg-slideshow <%= locals.bg_class || 'home-bg' %>">
             <div class="bg-slide bg-1"></div>
             <div class="bg-slide bg-2"></div>
             <div class="bg-slide bg-3"></div>
@@ -41,6 +45,9 @@
                                     class="nav-link <%= currentPath === 'about.html' ? 'nav-link--active' : '' %>">About</a>
                               <a href="contact.html"
                                     class="nav-link <%= currentPath === 'contact.html' ? 'nav-link--active' : '' %>">Contact</a>
+                              <a href="crawler.html"
+                                    class="nav-link <%= currentPath === 'crawler.html' ? 'nav-link--active' : '' %>"
+                                    data-role="crawler-link" data-requires-auth="true">Crawler</a>
                               <a href="login.html" class="nav-link nav-link--primary" data-role="login-link">Log in</a>
                               <a href="#" class="nav-link nav-link--primary nav-link--logout is-hidden"
                                     data-role="logout-link">Log out</a>
@@ -102,8 +109,8 @@
                               </aside>
                         </section>
                         <% } else { %>
-                              <!-- Default content render if no hero structure -->
-                              <div class="container content-wrapper">
+                              <!-- Uses page-shell for content pages (markdown) -->
+                              <div class="page-shell">
                                     <%- content %>
                               </div>
                               <% } %>

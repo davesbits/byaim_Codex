@@ -8,3 +8,8 @@ binding = "AI"
 [[vectorize]]
 binding = "VECTORIZE_INDEX"
 index_name = "byaim-knowledge"
+
+[[kv_namespaces]]
+binding = "KNOWLEDGE_STORE"
+id = "f3f17652bddf41abacf69bfcbeedd5af"
+preview_id = "f3f17652bddf41abacf69bfcbeedd5af"
