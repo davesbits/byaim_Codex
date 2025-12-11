@@ -4,7 +4,7 @@ bg_class: contact-bg
 ---
 
 <section class="section-block">
-    <div class="section-kicker">Contact & booking</div>
+    <div class="section-kicker">Contwaat & booking</div>
     <h1 class="section-heading">Start with a question or a simple booking request.</h1>
     <p class="section-text">
       Use this form to ask a question, suggest a project, or request a charitable
