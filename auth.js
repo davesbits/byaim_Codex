@@ -18,9 +18,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const loginLink = document.querySelector("[data-role='login-link']");
   const logoutLink = document.querySelector("[data-role='logout-link']");
   const authOnlyLinks = document.querySelectorAll("[data-requires-auth='true']");
+  const nav = document.querySelector("header nav");
 
   const user = await getUser();
   const isAuthed = !!user;
+
+  // Ensure crawler link exists for authed users (guards against stale builds/caches)
+  if (isAuthed && nav && !nav.querySelector("[data-role='crawler-link']")) {
+    const crawler = document.createElement("a");
+    crawler.href = "crawler.html";
+    crawler.textContent = "Crawler";
+    crawler.className = "nav-link";
+    crawler.dataset.role = "crawler-link";
+    crawler.dataset.requiresAuth = "true";
+    // insert before login/logout links if present
+    const anchorPoint = loginLink || logoutLink;
+    if (anchorPoint && anchorPoint.parentElement === nav) {
+      nav.insertBefore(crawler, anchorPoint);
+    } else {
+      nav.appendChild(crawler);
+    }
+  }
 
   // nav toggle
   if (loginLink) loginLink.classList.toggle("is-hidden", isAuthed);
