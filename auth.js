@@ -3,6 +3,9 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const SUPABASE_URL = "https://losdkdhitteqwomunblt.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxvc2RrZGhpdHRlcXdvbXVuYmx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMDc5MzUsImV4cCI6MjA3OTU4MzkzNX0.pDDcP6K8F_X2uZ7Sjh_amNDY9VOUVOEz0oWNYWpXezc";
 
+// Ensure OAuth and magic links return to the current site (avoids stale redirect domains)
+const REDIRECT_TO = `${window.location.origin}/`;
+
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function getUser() {
@@ -82,7 +85,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (googleBtn) {
     googleBtn.addEventListener("click", async () => {
       try {
-        await supabase.auth.signInWithOAuth({ provider: "google" });
+        await supabase.auth.signInWithOAuth({
+          provider: "google",
+          options: { redirectTo: REDIRECT_TO },
+        });
         // redirect handled by Supabase project settings
       } catch (e) {
         console.error(e);
@@ -94,7 +100,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (githubBtn) {
     githubBtn.addEventListener("click", async () => {
       try {
-        await supabase.auth.signInWithOAuth({ provider: "github" });
+        await supabase.auth.signInWithOAuth({
+          provider: "github",
+          options: { redirectTo: REDIRECT_TO },
+        });
       } catch (e) {
         console.error(e);
         alert("GitHub login failed.");
@@ -107,7 +116,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const email = window.prompt("Enter your email for a magic login link:");
       if (!email) return;
       try {
-        const { error } = await supabase.auth.signInWithOtp({ email });
+        const { error } = await supabase.auth.signInWithOtp({
+          email,
+          options: { emailRedirectTo: REDIRECT_TO },
+        });
         if (error) {
           console.error(error);
           alert("Could not send login email: " + error.message);
