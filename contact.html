@@ -57,7 +57,8 @@
                   
                               <!-- Uses page-shell for content pages (markdown) -->
                               <div class="page-shell">
-                                    <section class="section-block">
+                                    
+<section class="section-block">
     <div class="section-kicker">Contwaat & booking</div>
     <h1 class="section-heading">Start with a question or a simple booking request.</h1>
     <p class="section-text">
@@ -76,67 +77,66 @@
           <input id="name" name="name" type="text" class="form-input" autocomplete="name" required />
         </div>
 
-<pre><code>    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;email&quot; class=&quot;form-label&quot;&gt;Email address&lt;/label&gt;
-      &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; class=&quot;form-input&quot; autocomplete=&quot;email&quot; required /&gt;
-      &lt;div class=&quot;form-helper&quot;&gt;
-        I&#39;ll reply here first. SMS and other options may be added later.
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="email" class="form-label">Email address</label>
+          <input id="email" name="email" type="email" class="form-input" autocomplete="email" required />
+          <div class="form-helper">
+            I'll reply here first. SMS and other options may be added later.
+          </div>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;topic&quot; class=&quot;form-label&quot;&gt;What do you need?&lt;/label&gt;
-      &lt;select id=&quot;topic&quot; name=&quot;topic&quot; class=&quot;form-select&quot;&gt;
-        &lt;option value=&quot;question&quot;&gt;I have a general question&lt;/option&gt;
-        &lt;option value=&quot;booking&quot;&gt;I&#39;d like to book a charitable session&lt;/option&gt;
-        &lt;option value=&quot;organisation&quot;&gt;I&#39;m asking on behalf of a charity / organisation&lt;/option&gt;
-        &lt;option value=&quot;cost-tools&quot;&gt;I&#39;d like to help test the cost tools&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="topic" class="form-label">What do you need?</label>
+          <select id="topic" name="topic" class="form-select">
+            <option value="question">I have a general question</option>
+            <option value="booking">I'd like to book a charitable session</option>
+            <option value="organisation">I'm asking on behalf of a charity / organisation</option>
+            <option value="cost-tools">I'd like to help test the cost tools</option>
+          </select>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;message&quot; class=&quot;form-label&quot;&gt;Tell me a little bit about your situation&lt;/label&gt;
-      &lt;textarea id=&quot;message&quot; name=&quot;message&quot; class=&quot;form-textarea&quot; placeholder=&quot;Anything you&#39;d like to share – diagnoses, energy levels, tech setup, or just what&#39;s frustrating you most.&quot; required&gt;&lt;/textarea&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="message" class="form-label">Tell me a little bit about your situation</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Anything you'd like to share – diagnoses, energy levels, tech setup, or just what's frustrating you most." required></textarea>
+        </div>
 
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label for=&quot;preferred&quot; class=&quot;form-label&quot;&gt;Preferred reply type&lt;/label&gt;
-      &lt;select id=&quot;preferred&quot; name=&quot;preferred&quot; class=&quot;form-select&quot;&gt;
-        &lt;option value=&quot;email&quot;&gt;Email only&lt;/option&gt;
-        &lt;option value=&quot;phone&quot;&gt;Phone / voice call (details later)&lt;/option&gt;
-        &lt;option value=&quot;either&quot;&gt;Either is fine&lt;/option&gt;
-      &lt;/select&gt;
-      &lt;div class=&quot;form-helper&quot;&gt;
-        In future, this can include SMS and other options.
-      &lt;/div&gt;
-    &lt;/div&gt;
+        <div class="form-group">
+          <label for="preferred" class="form-label">Preferred reply type</label>
+          <select id="preferred" name="preferred" class="form-select">
+            <option value="email">Email only</option>
+            <option value="phone">Phone / voice call (details later)</option>
+            <option value="either">Either is fine</option>
+          </select>
+          <div class="form-helper">
+            In future, this can include SMS and other options.
+          </div>
+        </div>
 
-    &lt;button type=&quot;submit&quot; class=&quot;btn btn--primary&quot; id=&quot;submit-btn&quot;&gt;Send message&lt;/button&gt;
-    &lt;div id=&quot;form-status&quot; class=&quot;form-helper&quot;&gt;&lt;/div&gt;
-  &lt;/form&gt;
+        <button type="submit" class="btn btn--primary" id="submit-btn">Send message</button>
+        <div id="form-status" class="form-helper"></div>
+      </form>
 
-  &lt;div&gt;
-    &lt;div class=&quot;section-subheading&quot;&gt;What happens next&lt;/div&gt;
-    &lt;p class=&quot;section-text&quot;&gt;
-      Right now, I&#39;m keeping things intentionally small. As byAIm grows towards
-      its &lt;strong&gt;planned public launch in 2026&lt;/strong&gt;, this page will become
-      the hub for:
-    &lt;/p&gt;
+      <div>
+        <div class="section-subheading">What happens next</div>
+        <p class="section-text">
+          Right now, I'm keeping things intentionally small. As byAIm grows towards
+          its <strong>planned public launch in 2026</strong>, this page will become
+          the hub for:
+        </p>
 
-    &lt;ul class=&quot;checklist&quot;&gt;
-      &lt;li&gt;AI-assisted question triage (so you don&#39;t have to write long emails).&lt;/li&gt;
-      &lt;li&gt;Automated suggestions for sessions and follow-ups.&lt;/li&gt;
-      &lt;li&gt;SMS reminders and updates for people who prefer texts.&lt;/li&gt;
-      &lt;li&gt;A clearer pathway for charities and organisations.&lt;/li&gt;
-    &lt;/ul&gt;
+        <ul class="checklist">
+          <li>AI-assisted question triage (so you don't have to write long emails).</li>
+          <li>Automated suggestions for sessions and follow-ups.</li>
+          <li>SMS reminders and updates for people who prefer texts.</li>
+          <li>A clearer pathway for charities and organisations.</li>
+        </ul>
 
-    &lt;p class=&quot;section-meta&quot;&gt;
-      For now, treat this as a &quot;note to future us&quot;. Once your backend is ready,
-      you&#39;ll connect this form to Supabase functions, Twilio, and your AI agents.
-    &lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
+        <p class="section-meta">
+          For now, treat this as a "note to future us". Once your backend is ready,
+          you'll connect this form to Supabase functions, Twilio, and your AI agents.
+        </p>
+      </div>
+    </div>
   </section>
 
 <script type="module">

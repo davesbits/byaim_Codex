@@ -8,6 +8,12 @@ const CONTENT_DIR = 'content';
 const LAYOUTS_DIR = '_layouts';
 const OUTPUT_DIR = '.';
 
+// Configure marked to pass through raw HTML unescaped
+marked.setOptions({
+      breaks: true,
+      gfm: true,
+});
+
 async function build() {
       // Ensure content dir exists
       try {
@@ -38,8 +44,11 @@ async function build() {
 
             const { data, content } = matter(fileContent);
 
-            // Convert markdown to HTML
-            const htmlContent = marked.parse(content);
+            // Check if content is primarily HTML (starts with < after trimming)
+            // If so, pass it through directly; otherwise parse as markdown
+            const trimmedContent = content.trim();
+            const isRawHtml = trimmedContent.startsWith('<');
+            const htmlContent = isRawHtml ? content : marked.parse(content);
 
             // Prepare data for template
             const templateData = {
