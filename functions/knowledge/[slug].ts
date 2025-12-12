@@ -8,8 +8,10 @@ interface Env {
 export const onRequestGet: PagesFunction<Env> = async (context) => {
       const { params, env } = context;
       const slug = params.slug as string;
+      const userId = "user_123"; // TODO: Replace with actual auth logic
+      const key = `${userId}:${slug}`;
 
-      const content = await env.KNOWLEDGE_STORE.get(slug);
+      const content = await env.KNOWLEDGE_STORE.get(key);
 
       if (!content) {
             return new Response("Not Found", { status: 404 });

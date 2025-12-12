@@ -22,18 +22,38 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             // However, the prompt says "input off the site url that you want to push the scrapped data... input is page to add url,txt,csv markdown with file picker"
             // So if type is URL, we fetch and convert. If type is text, we just save.
 
+            // Get User ID from auth (assuming auth middleware or header)
+            // For now, we'll simulate or grab from a header if available, or default to 'public'
+            // In a real app, use context.data.user or similar from auth middleware
+            const userId = "user_123"; // TODO: Replace with actual auth logic
+            const key = `${userId}:${body.slug}`;
+
             if (body.type === 'url') {
+                  // Use a more robust fetch or a scraping service if possible.
+                  // Many sites block simple fetches.
                   const fetchResp = await fetch(body.content, {
-                        headers: { "User-Agent": "ByAimCrawler/1.0" }
+                        headers: { 
+                              "User-Agent": "Mozilla/5.0 (compatible; ByAimCrawler/1.0; +http://byaim.com)",
+                              "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                        }
                   });
-                  if (!fetchResp.ok) throw new Error("Failed to fetch target URL");
+                  
+                  if (!fetchResp.ok) throw new Error(`Failed to fetch target URL: ${fetchResp.status}`);
+                  
+                  // Check if we got redirected to a login page or homepage
+                  if (fetchResp.url !== body.content && !fetchResp.url.includes(body.content)) {
+                         // This is a hint that we might have been redirected
+                         console.warn(`Redirected from ${body.content} to ${fetchResp.url}`);
+                  }
 
                   const html = await fetchResp.text();
-                  // Very simple extraction for now - just saving raw HTML or wrapping it
-                  // In a real app we'd use robust HTML->MD converter. 
-                  // For KISS, let's wrap it in a code block or just save as is if we want to render it later?
-                  // The requirement: "writes markdown that can be crawled... added to knowledge"
-                  // Let's create a simple markdown wrapper
+                  
+                  // Basic HTML to Markdown (very simple regex based for now to avoid heavy deps)
+                  // Remove scripts and styles
+                  const cleanHtml = html
+                        .replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gm, "")
+                        .replace(/<style\b[^>]*>([\s\S]*?)<\/style>/gm, "");
+                  
                   markdown = `---
 source: ${body.content}
 ingested: ${new Date().toISOString()}
@@ -41,12 +61,11 @@ ingested: ${new Date().toISOString()}
 
 # Content from ${body.content}
 
-${html.substring(0, 10000)} 
-<!-- Truncated/Raw HTML for now as we lack a heavy parser in this edge function without deps -->
+${cleanHtml.substring(0, 50000)} 
 `;
             }
 
-            await env.KNOWLEDGE_STORE.put(body.slug, markdown);
+            await env.KNOWLEDGE_STORE.put(key, markdown);
 
             return new Response(JSON.stringify({ success: true, slug: body.slug }), {
                   headers: { "Content-Type": "application/json" }

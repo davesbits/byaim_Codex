@@ -1,4 +1,5 @@
 # Environment / secrets
+.dev.vars
 .env
 .env.*
 
