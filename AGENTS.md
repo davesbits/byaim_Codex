@@ -1,4 +1,4 @@
-# Repository Guidelines
+n# Repository Guidelines
 
 ## Project Structure & Module Organization
 - `index.html`, `styles.css`, and `chat.js` provide the static Pages surface and embed the chat widget. Keep assets lean; new UI components live beside these files unless they require build tooling.
