@@ -4,7 +4,7 @@
       "description": "Full stack Cloudflare Pages project with AI and Crawler",
       "scripts": {
             "dev": "wrangler dev",
-            "deploy": "npm run build && wrangler deploy",
+            "deploy": "npm run build && wrangler pages deploy .",
             "ingest": "node scripts/ingest_example.mjs",
             "build": "node scripts/build_site.mjs"
       },
