@@ -13,7 +13,7 @@ bg_class: business-bg
   </p>
 
   <div class="button-row">
-    <a href="support.html" class="btn btn--primary" data-requires-auth="true">Enquire about a session</a>
+    <a href="app.html" class="btn btn--primary" data-requires-auth="true">Enquire about a session (App)</a>
     <a href="#" class="btn">Download outline as PDF</a>
   </div>
 

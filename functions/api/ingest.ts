@@ -12,7 +12,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             const body = await request.json() as {
                   type: 'url' | 'text',
                   content: string,
-                  slug: string
+                  slug: string,
+                  subject?: string
             };
 
             if (!body.slug || !body.content) {

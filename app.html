@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Dashboard | byAIm</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Dashboard specific styles */
+    .dashboard-nav {
+      display: flex;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 2rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .dashboard-tab {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .dashboard-tab:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .dashboard-tab.active {
+      color: var(--primary-color, #fff);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dashboard-view {
+      display: none;
+    }
+
+    .dashboard-view.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Reuse crawler styles */
+    .crawler-results {
+        margin-top: 2rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: none;
+      }
+      .crawler-results.visible { display: block; }
+      .result-item { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+      .result-item:last-child { border-bottom: none; }
+      .result-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+      .result-value { font-size: 0.95rem; color: var(--text-main); word-break: break-all; }
+      .loading-spinner { display: inline-block; width: 1rem; height: 1rem; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; margin-right: 0.5rem; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .sub-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+      .sub-tab-btn { background: none; border: none; padding: 0.75rem 0; color: var(--text-muted); cursor: pointer; font-weight: 500; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+      .sub-tab-btn.active { color: var(--text-main); border-bottom-color: var(--primary-color, #fff); }
+      .sub-tab-panel { display: none; }
+      .sub-tab-panel.active { display: block; }
+  </style>
+</head>
+<body>
+  <div class="bg-slideshow home-bg">
+    <div class="bg-slide bg-1"></div>
+    <div class="bg-slide bg-2"></div>
+    <div class="bg-slide bg-3"></div>
+    <div class="bg-slide bg-4"></div>
+  </div>
+  <div class="bg-overlay"></div>
+  <div class="bg-veil"></div>
+
+  <div class="site-shell">
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-text">by<span>AIm</span></div>
+        </div>
+        <nav>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="members.html" class="nav-link">Members</a>
+            <a href="business.html" class="nav-link">Business</a>
+            <a href="charities.html" class="nav-link">Charities</a>
+            <a href="support.html" class="nav-link">Support</a>
+            <a href="app.html" class="nav-link nav-link--active" data-requires-auth="true">App</a>
+            <a href="#" class="nav-link nav-link--primary nav-link--logout" data-role="logout-link">Log out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-shell">
+        <div class="hero-shell">
+          <div class="hero-content" style="max-width: 800px;">
+            <div class="hero-kicker">Welcome back</div>
+            <h1 class="hero-title">Your <span class="hero-title-strong">Dashboard</span></h1>
+            
+            <!-- Dashboard Navigation -->
+            <div class="dashboard-nav">
+              <button class="dashboard-tab active" data-view="knowledge">Knowledge Base</button>
+              <button class="dashboard-tab" data-view="voice">Voice Agent</button>
+            </div>
+
+            <!-- View: Knowledge / Crawler -->
+            <div id="view-knowledge" class="dashboard-view active">
+                <p class="hero-subtitle">
+                    Ingest new knowledge sources (URLs, Text, or Files) for your AI assistant.
+                </p>
+
+                <div class="card">
+                    <div class="sub-tabs">
+                      <button class="sub-tab-btn active" data-subtab="url">URL Crawler</button>
+                      <button class="sub-tab-btn" data-subtab="text">Paste Text</button>
+                      <button class="sub-tab-btn" data-subtab="file">Upload File</button>
+                    </div>
+    
+                    <form id="ingest-form" class="contact-grid" style="grid-template-columns: 1fr; gap: 1rem">
+                      <div class="form-group">
+                        <label class="form-label" for="slug-input">Target Slug</label>
+                        <input type="text" id="slug-input" class="form-input" placeholder="e.g. ai-news-december" required pattern="[a-zA-Z0-9-_]+" title="Letters, numbers, hyphens, and underscores only" />
+                        <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">
+                          /knowledge/<span id="slug-preview">...</span>
+                        </small>
+                      </div>
+    
+                      <div id="panel-url" class="sub-tab-panel active">
+                        <div class="form-group">
+                          <label class="form-label" for="url-input">Target URL</label>
+                          <input type="url" id="url-input" class="form-input" placeholder="https://example.com" />
+                        </div>
+                      </div>
+    
+                      <div id="panel-text" class="sub-tab-panel">
+                        <div class="form-group">
+                          <label class="form-label" for="text-input">Content</label>
+                          <textarea id="text-input" class="form-input" rows="6" placeholder="# My Notes..."></textarea>
+                        </div>
+                      </div>
+    
+                      <div id="panel-file" class="sub-tab-panel">
+                        <div class="form-group">
+                          <label class="form-label" for="file-input">File</label>
+                          <input type="file" id="file-input" class="form-input" accept=".txt,.md,.csv,.json" />
+                        </div>
+                      </div>
+    
+                      <button type="submit" class="btn btn--primary" id="crawl-btn">
+                        <span>Ingest Content</span>
+                      </button>
+                    </form>
+    
+                    <div id="results-area" class="crawler-results">
+                      <h3 class="section-subheading">Results</h3>
+                      <div id="results-content"></div>
+                    </div>
+                  </div>
+            </div>
+
+            <!-- View: Voice Agent -->
+            <div id="view-voice" class="dashboard-view">
+                <p class="hero-subtitle">
+                    Talk to your AI assistant using ElevenLabs (Coming Soon).
+                </p>
+                <div class="card">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎙️</div>
+                        <h3>Voice Interface</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                            Websocket connection to ElevenLabs API will be configured here.
+                        </p>
+                        <button class="btn" disabled>Start Conversation</button>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="hero-side">
+            <div class="panel">
+              <div class="panel-title">Your Data</div>
+              <h3 class="panel-heading">Quick Links</h3>
+              <ul class="checklist" style="margin-top: 1rem;">
+                <li><a href="/knowledge" style="color:inherit;">Browse Knowledge Index</a></li>
+                <li><a href="#" style="color:inherit;">Account Settings</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>&copy; 2025 byAIm Inc.</div>
+        <div class="launch-tag">System Status: Operational</div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+  <script type="module">
+    import { supabase } from './auth.js';
+
+    // Auth Check
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        window.location.href = "login.html";
+    }
+
+    // Dashboard Tabs
+    const dashTabs = document.querySelectorAll('.dashboard-tab');
+    const dashViews = document.querySelectorAll('.dashboard-view');
+    dashTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            dashTabs.forEach(t => t.classList.remove('active'));
+            dashViews.forEach(v => v.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(`view-${tab.dataset.view}`).classList.add('active');
+        });
+    });
+
+    // Ingest Logic (Migrated)
+    const form = document.getElementById('ingest-form');
+    const slugInput = document.getElementById("slug-input");
+    const slugPreview = document.getElementById("slug-preview");
+    const btn = document.getElementById("crawl-btn");
+    const resultsArea = document.getElementById("results-area");
+    const resultsContent = document.getElementById("results-content");
+
+    // Sub Tabs (Ingest Types)
+    const subTabs = document.querySelectorAll(".sub-tab-btn");
+    const subPanels = document.querySelectorAll(".sub-tab-panel");
+    let currentType = "url";
+
+    subTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+        subTabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        currentType = tab.dataset.subtab;
+        subPanels.forEach(p => p.classList.remove("active"));
+        document.getElementById(`panel-${currentType}`).classList.add("active");
+    });
+    });
+
+    slugInput.addEventListener("input", (e) => {
+        slugPreview.textContent = e.target.value || "...";
+    });
+
+    form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading-spinner"></span> Processing...';
+    resultsArea.classList.remove("visible");
+    resultsContent.innerHTML = "";
+
+    let content = "";
+
+    try {
+        if (currentType === "url") {
+        const url = document.getElementById("url-input").value;
+        if (!url) throw new Error("Please enter a URL");
+        content = url;
+        } else if (currentType === "text") {
+        content = document.getElementById("text-input").value;
+        if (!content) throw new Error("Please enter some text");
+        } else if (currentType === "file") {
+        const fileInput = document.getElementById("file-input");
+        if (!fileInput.files.length) throw new Error("Please select a file");
+        content = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = (e) => reject(new Error("Failed to read file"));
+            reader.readAsText(fileInput.files[0]);
+        });
+        }
+
+        const response = await fetch("/api/ingest", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-User-Id": user.id,
+        },
+        body: JSON.stringify({
+            type: currentType === "url" ? "url" : "text",
+            slug: slugInput.value,
+            content,
+        }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || data.error || `Error ${response.status}`);
+
+        const viewUrl = `/knowledge/${data.slug}`;
+        resultsContent.innerHTML = `
+            <div class="result-item"><div class="result-label">Status</div><div class="result-value" style="color: #4ade80">Success</div></div>
+            <div class="result-item"><div class="result-label">Access</div><div class="result-value"><a href="${viewUrl}" target="_blank" style="color: #fff; text-decoration: underline;">View Page</a></div></div>
+        `;
+        resultsArea.classList.add("visible");
+    } catch (err) {
+        resultsContent.innerHTML = `<div class="result-item"><div class="result-label">Error</div><div class="result-value" style="color: #ff8f8f">${err.message}</div></div>`;
+        resultsArea.classList.add("visible");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = "<span>Ingest Content</span>";
+    }
+    });
+  </script>
+</body>
+</html>
