@@ -81,7 +81,6 @@ ${cleanHtml.substring(0, 50000)}
 
             // 3. Store in KV (simpler retrieval than Vectorize for "list my knowledge")
             // Key format: user:<userId>:<slug>
-            const key = `${userId}:${body.slug}`;
             await env.KNOWLEDGE_STORE.put(key, markdown, {
                   metadata,
                   expirationTtl: 60 * 60 * 24 * 30 // 30 days retention example
