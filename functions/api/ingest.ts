@@ -69,7 +69,23 @@ ${cleanHtml.substring(0, 50000)}
 `;
             }
 
-            await env.KNOWLEDGE_STORE.put(key, markdown);
+            // 2. Metadata for KV
+            const metadata = {
+                  userId,
+                  source: body.content, // original URL or snippet
+                  slug: body.slug,
+                  type: body.type, // or "text" / "file" (refine later)
+                  subject: body.subject || "No Subject", // Added Subject
+                  date: new Date().toISOString() // Added Date
+            };
+
+            // 3. Store in KV (simpler retrieval than Vectorize for "list my knowledge")
+            // Key format: user:<userId>:<slug>
+            const key = `${userId}:${body.slug}`;
+            await env.KNOWLEDGE_STORE.put(key, markdown, {
+                  metadata,
+                  expirationTtl: 60 * 60 * 24 * 30 // 30 days retention example
+            });
 
             // Generate Embeddings and Index
             if (env.AI && env.VECTORIZE_INDEX) {
@@ -84,7 +100,7 @@ ${cleanHtml.substring(0, 50000)}
                         {
                               id: key,
                               values,
-                              metadata: { userId, slug: body.slug, source: body.content }
+                              metadata: { ...metadata }
                         }
                   ]);
             }
