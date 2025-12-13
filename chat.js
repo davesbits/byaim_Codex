@@ -1,4 +1,4 @@
-// chat.js – front‑end widget that calls the Cloudflare Worker RAG endpoint at /api/chat
+import { supabase } from "./auth.js";
 
 function setupChat() {
   const launcher = document.getElementById("chat-launcher");
@@ -68,9 +68,15 @@ function setupChat() {
     setLoading(true);
 
     try {
+      const { data: { user } } = await supabase.auth.getUser();
+      const headers = { "Content-Type": "application/json" };
+      if (user) {
+        headers["X-User-Id"] = user.id;
+      }
+
       const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           question: text,
           page: getPageContext(),

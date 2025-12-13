@@ -38,9 +38,18 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
   let retrievedText = "";
   if (env.VECTORIZE_INDEX?.query) {
     try {
-      const queryResult = await env.VECTORIZE_INDEX.query(question, {
-        topK: 5,
-      });
+      const userId = request.headers.get("X-User-Id"); // Passed from frontend
+
+      // Only query if we have a user or if we allow public data (logic depends on requirements)
+      // For now, if userId is present, we try to filter. If not, maybe search public??
+      // Given the requirement is "per user knowledge", let's strict filter if userId is present.
+      
+      const queryOptions: any = { topK: 5 };
+      if (userId) {
+            queryOptions.filter = { userId };
+      }
+
+      const queryResult = await env.VECTORIZE_INDEX.query(question, queryOptions);
       const chunks = (queryResult.matches || [])
         .map((m: any) => m.metadata?.text)
         .filter(Boolean)

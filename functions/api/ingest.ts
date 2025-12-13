@@ -1,6 +1,9 @@
+/// <reference types="@cloudflare/workers-types" />
 
 interface Env {
       KNOWLEDGE_STORE: KVNamespace;
+      AI: any;
+      VECTORIZE_INDEX: VectorizeIndex;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -22,10 +25,11 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
             // However, the prompt says "input off the site url that you want to push the scrapped data... input is page to add url,txt,csv markdown with file picker"
             // So if type is URL, we fetch and convert. If type is text, we just save.
 
-            // Get User ID from auth (assuming auth middleware or header)
-            // For now, we'll simulate or grab from a header if available, or default to 'public'
-            // In a real app, use context.data.user or similar from auth middleware
-            const userId = "user_123"; // TODO: Replace with actual auth logic
+            // Get User ID from header (sent by client)
+            const userId = request.headers.get("X-User-Id");
+            if (!userId) {
+                  return new Response("Unauthorized: Missing User ID", { status: 401 });
+            }
             const key = `${userId}:${body.slug}`;
 
             if (body.type === 'url') {
@@ -66,6 +70,24 @@ ${cleanHtml.substring(0, 50000)}
             }
 
             await env.KNOWLEDGE_STORE.put(key, markdown);
+
+            // Generate Embeddings and Index
+            if (env.AI && env.VECTORIZE_INDEX) {
+                  const { data } = await env.AI.run("@cf/baai/bge-base-en-v1.5", {
+                        text: [markdown] // embeds the whole chunk for now
+                  });
+                  const values = data[0];
+                  
+                  if (!values) throw new Error("Failed to generate embeddings");
+
+                  await env.VECTORIZE_INDEX.upsert([
+                        {
+                              id: key,
+                              values,
+                              metadata: { userId, slug: body.slug, source: body.content }
+                        }
+                  ]);
+            }
 
             return new Response(JSON.stringify({ success: true, slug: body.slug }), {
                   headers: { "Content-Type": "application/json" }

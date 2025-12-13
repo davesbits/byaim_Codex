@@ -7,16 +7,15 @@ description: Human-centred IT & AI support.
   <div class="section-kicker">About byAIm</div>
   <h1 class="section-heading">Human-centred IT % AI support.</h1>
   <p class="section-text">
-    I'm Dave, living with multiple sclerosis and building byAIm as a charitable-first
-    way to use AI, automation, and thoughtful IT to reduce workload therefore cost for people and
-    organisations who need to maitain cost. Your donations to MS and neuro charities
+    I'm David, living with multiple sclerosis and building byAIm as a charitable-first way to use AI, automation, and thoughtful IT to reduce workload therefore cost for people and
+    organisations. Your donations to MS and neuro charities
     are the currency for the help I provide.
   </p>
   <p class="section-text">
     I focus on practical, lightweight changes: voice-friendly setups, gentle automations,
-    clearer workflows, and realistic cloud choices that respect limited knowleddge time.
-    Whether you're an individual business, a small charity, or a team, the goal is the same:
-    tech that quietly supports you instead of draining you.
+    clearer workflows, and realistic cloud choices that respect limited knowleddge and and time.
+    Whether you're an individual business, a small charity, or a team, the goal is the same: Supporting you to be more productive. 
+   
   </p>
 </section>
 
@@ -31,9 +30,11 @@ description: Human-centred IT & AI support.
 </section>
 
 <section class="section-block">
-  <div class="section-subheading">How to work together</div>
+  <div class="section-subheading">All </div>
   <div class="button-row">
-    <a href="support.html" class="btn btn--primary" data-requires-auth="true">Book a charitable session</a>
-    <a href="contact.html" class="btn">Send a question</a>
+    <a href="support.html" class="btn btn--primary" data-requires-auth="true">Download the Q&A pdf to get started         </a>
+    <a href="contact.html" class="btn">Send a message to get started</a>
+
+    <a href="business.html" class="btn">Send a message to get started</a>
   </div>
 </section>
