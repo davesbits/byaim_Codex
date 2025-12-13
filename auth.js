@@ -20,7 +20,8 @@ async function getUser() {
 document.addEventListener("DOMContentLoaded", async () => {
   const loginLink = document.querySelector("[data-role='login-link']");
   const logoutLink = document.querySelector("[data-role='logout-link']");
-  const authOnlyLinks = document.querySelectorAll("[data-requires-auth='true']");
+  // Only select auth-gated links inside header nav (not body content links)
+  const authOnlyLinks = document.querySelectorAll("header nav [data-requires-auth='true']");
   const nav = document.querySelector("header nav");
 
   const user = await getUser();

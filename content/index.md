@@ -16,7 +16,7 @@ hero:
 panels:
   - title: How it works
     heading: Pre-consultation, powered by AI
-    text: lets change tech, your energy levels, and what you'd like to make easier. I use AI tools plus real-world experience to map out small, realistic changes.
+    text: lets change this line and then test the text build, and what you'd like to make easier. I use AI tools plus real-world experience to map out small, realistic changes.
     pills:
       - AI workflows
       - Apps & devices
