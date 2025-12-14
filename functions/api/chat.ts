@@ -7,6 +7,12 @@ interface Env {
   VECTORIZE_INDEX?: {
     query: (text: string, options?: Record<string, unknown>) => Promise<any>;
   };
+  KNOWLEDGE_STORE: KVNamespace;
+}
+
+interface KVNamespace {
+    put(key: string, value: string | ReadableStream | ArrayBuffer, options?: any): Promise<void>;
+    list(options?: any): Promise<any>;
 }
 
 interface PagesContext {
@@ -96,8 +102,58 @@ export async function onRequestPost(context: PagesContext): Promise<Response> {
     console.error("AI run failed:", e);
   }
 
+  // --- 3. Keyword/Contact Extraction (Post-processing) ---
+  let extractedInfo: any = {};
+  try {
+      if (env.AI) {
+        // Ask a smaller model to extract details
+        const extractionPrompt = [
+          { role: "system", content: "Extract any contact details (name, email, phone) and the main inquiry keyword from this conversation. Return JSON only: { contact_name, contact_email, contact_phone, inquiry_topic }." },
+          { role: "user", content: `User: ${question}\nAssistant: ${answerText}` }
+        ];
+        const extractRes: any = await env.AI.run("@cf/meta/llama-3-8b-instruct", { messages: extractionPrompt });
+        const extractText = extractRes?.response || extractRes?.output_text || "";
+        
+        // Simple heuristic attempt to parse JSON if model returns text wrapping it
+        const jsonMatch = extractText.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            extractedInfo = JSON.parse(jsonMatch[0]);
+        }
+      }
+  } catch (e) {
+      console.error("Extraction failed:", e);
+  }
+
+
+  // --- 4. Store Conversation History ---
+  try {
+      const userId = request.headers.get("X-User-Id");
+      if (userId && env.KNOWLEDGE_STORE) {
+          const timestamp = new Date().toISOString();
+          const chatKey = `chat:${userId}:${timestamp}`;
+          
+          await env.KNOWLEDGE_STORE.put(chatKey, JSON.stringify({
+              question,
+              answer: answerText,
+              extracted: extractedInfo,
+              timestamp
+          }), {
+              metadata: {
+                  userId,
+                  type: "chat_history",
+                  summary: question.substring(0, 50) + "...",
+                  inquiry: extractedInfo.inquiry_topic || "General",
+                  hasContact: !!(extractedInfo.contact_email || extractedInfo.contact_phone)
+              },
+              expirationTtl: 60 * 60 * 24 * 60 // 60 days
+          });
+      }
+  } catch (e) {
+      console.error("Failed to store chat history:", e);
+  }
+
   return new Response(
-    JSON.stringify({ answer: answerText }),
+    JSON.stringify({ answer: answerText, extracted: extractedInfo }),
     { status: 200, headers: { "Content-Type": "application/json" } }
   );
 }

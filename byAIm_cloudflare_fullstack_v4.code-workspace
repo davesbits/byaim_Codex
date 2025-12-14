@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"accessibility.voice.keywordActivation": "chatInView"
+		"accessibility.voice.keywordActivation": "chatInView",
+		"liveServer.settings.multiRootWorkspaceName": "byAIm_cloudflare_fullstack_v4"
 	}
 }

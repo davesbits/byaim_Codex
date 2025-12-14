@@ -4,7 +4,7 @@ const SUPABASE_URL = "https://losdkdhitteqwomunblt.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxvc2RrZGhpdHRlcXdvbXVuYmx0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMDc5MzUsImV4cCI6MjA3OTU4MzkzNX0.pDDcP6K8F_X2uZ7Sjh_amNDY9VOUVOEz0oWNYWpXezc";
 
 // Ensure OAuth and magic links return to the current site (avoids stale redirect domains)
-const REDIRECT_TO = `${window.location.origin}/`;
+const REDIRECT_TO = `${window.location.origin}/app.html`;
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Ensure crawler link exists for authed users (guards against stale builds/caches)
   if (isAuthed && nav && !nav.querySelector("[data-role='crawler-link']")) {
     const crawler = document.createElement("a");
-    crawler.href = "crawler.html";
-    crawler.textContent = "Crawler";
+    crawler.href = "app.html";
+    crawler.textContent = "App";
     crawler.className = "nav-link";
     crawler.dataset.role = "crawler-link";
     crawler.dataset.requiresAuth = "true";
