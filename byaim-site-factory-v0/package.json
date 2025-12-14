@@ -1,0 +1,17 @@
+{
+  "name": "byaim-site-factory",
+  "version": "0.1.0",
+  "description": "CLI tool to generate and deploy site variants for byAIm using an OpenAI-compatible endpoint and Cloudflare Pages.",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public",
+    "generate:site": "node generator/create-site-variant.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.92.0"
+  }
+}

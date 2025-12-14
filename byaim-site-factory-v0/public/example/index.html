@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>byAIm Example Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/example/styles.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <nav>
+        <span class="brand">byAIm Example</span>
+        <div class="auth-controls">
+          <span data-user-email class="user-email"></span>
+          <button id="loginBtn" class="btn">Sign in</button>
+          <button id="logoutBtn" class="btn hidden">Sign out</button>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <h1>Example variant ready to replace.</h1>
+        <p>This page exists only as a placeholder. Use the generator to create real sites.</p>
+      </section>
+    </main>
+    <footer class="footer">
+      <small>&copy; <span id="year"></span> byAIm</small>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="/shared/env.example.js"></script>
+    <script type="module" src="/shared/init-auth.js"></script>
+  </body>
+</html>
