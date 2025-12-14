@@ -117,6 +117,8 @@ git add -A && git commit -m "feat: add Supabase credentials" && git push
 npx wrangler pages deploy . --project-name=codex-cli
 ```
 
+`wrangler.toml` now pins the static asset directory to the repo root (`[assets] directory = "."`), so `wrangler versions upload` and other deploy commands will bundle the HTML, CSS, and JS without extra flags.
+
 ---
 
 ## TODO: Cloudflare Bindings
