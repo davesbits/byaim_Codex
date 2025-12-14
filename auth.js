@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const user = await getUser();
   const isAuthed = !!user;
 
+  const authSections = document.querySelectorAll("[data-auth='required']");
+  const guestSections = document.querySelectorAll("[data-auth='guest']");
+
   // Ensure crawler link exists for authed users (guards against stale builds/caches)
   if (isAuthed && nav && !nav.querySelector("[data-role='crawler-link']")) {
     const crawler = document.createElement("a");
@@ -47,6 +50,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // nav toggle
   if (loginLink) loginLink.classList.toggle("is-hidden", isAuthed);
   if (logoutLink) logoutLink.classList.toggle("is-hidden", !isAuthed);
+
+  authSections.forEach((section) => section.classList.toggle("is-hidden", !isAuthed));
+  guestSections.forEach((section) => section.classList.toggle("is-hidden", isAuthed));
 
   // Disable protected links when logged out; restore them when authed
   authOnlyLinks.forEach((el) => {
